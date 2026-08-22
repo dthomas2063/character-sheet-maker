@@ -2,9 +2,10 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import Character from '../src/models/Character.js'
 import User from '../src/models/User.js'
+import Game from '../src/models/Game.js'
 
 dotenv.config()
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/character-sheet'
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/character-sheet'
 
 async function run(){
   await mongoose.connect(MONGO_URI, {useNewUrlParser:true, useUnifiedTopology:true})
@@ -103,6 +104,68 @@ async function run(){
     }
   ]
 
+  const playerSamples = [
+    {
+      name: 'Mira Thornwood',
+      player: 'Morgan',
+      race: 'Human',
+      background: 'Folk Hero',
+      alignment: 'Chaotic Good',
+      classes: [{ name: 'Rogue', level: 2 }],
+      level: 2,
+      proficiencyBonus: 2,
+      abilityScores: { str: 10, dex: 16, con: 13, int: 12, wis: 14, cha: 11 },
+      hitPoints: { max: 17, current: 17, temporary: 0 },
+      hitDice: { total: '2d8', used: 0 },
+      armorClass: 14,
+      initiative: 3,
+      speed: 30,
+      attacks: [
+        { name: 'Shortsword', attackBonus: 5, damage: '1d6+3 piercing', notes: 'Finesse' },
+        { name: 'Shortbow', attackBonus: 5, damage: '1d6+3 piercing', notes: 'Range 80/320' }
+      ],
+      equipment: ['Shortsword', 'Shortbow', 'Leather Armor', 'Thieves\' Tools'],
+      features: [
+        { name: 'Sneak Attack', description: 'Deal extra damage once per turn when the attack qualifies.' },
+        { name: 'Cunning Action', description: 'Dash, Disengage, or Hide as a bonus action.' }
+      ],
+      languages: ['Common', 'Halfling'],
+      proficiencies: ['Light armor', 'Simple weapons', 'Thieves\' tools'],
+      notes: 'Mira knows every back road between the villages.'
+    },
+    {
+      name: 'Pip Emberstone',
+      player: 'Morgan',
+      race: 'Halfling',
+      subrace: 'Lightfoot Halfling',
+      background: 'Entertainer',
+      alignment: 'Neutral Good',
+      classes: [{ name: 'Bard', level: 1 }],
+      level: 1,
+      proficiencyBonus: 2,
+      abilityScores: { str: 8, dex: 14, con: 12, int: 10, wis: 13, cha: 16 },
+      hitPoints: { max: 9, current: 9, temporary: 0 },
+      hitDice: { total: '1d8', used: 0 },
+      armorClass: 13,
+      initiative: 2,
+      speed: 25,
+      spells: {
+        spellcastingAbility: 'Cha',
+        spellSlots: { '1': 2 },
+        knownSpells: ['Healing Word', 'Vicious Mockery'],
+        preparedSpells: ['Healing Word', 'Vicious Mockery']
+      },
+      equipment: ['Rapier', 'Lute', 'Leather Armor', 'Entertainer\'s Pack'],
+      features: [
+        { name: 'Bardic Inspiration', description: 'Inspire an ally with a bonus action.' },
+        { name: 'Brave', description: 'Advantage on saving throws against being frightened.' }
+      ],
+      languages: ['Common', 'Halfling', 'Elvish'],
+      proficiencies: ['Light armor', 'Rapier', 'Musical instruments'],
+      notes: 'Pip has a song for every tavern and an entrance for every occasion.'
+    }
+  ]
+
   try{
     // ensure demo user exists
     let demo = await User.findOne({ email: 'dev@example.com' })
@@ -114,10 +177,36 @@ async function run(){
       console.log('Demo user already exists: dev@example.com')
     }
 
+    let player = await User.findOne({ email: 'player@example.com' })
+    if(!player){
+      player = new User({ email: 'player@example.com', password: 'password', name: 'Morgan' })
+      await player.save()
+      console.log('Created test player: player@example.com / password')
+    }else{
+      console.log('Test player already exists: player@example.com')
+    }
+
+    await Game.deleteMany({})
     await Character.deleteMany({})
-    const withOwner = samples.map(s => ({ ...s, owner: demo._id }))
-    const created = await Character.insertMany(withOwner)
-    console.log(`Inserted ${created.length} characters and assigned to demo user`)
+    const demoCharacters = samples.map(s => ({ ...s, owner: demo._id }))
+    const playerCharacters = playerSamples.map(s => ({ ...s, owner: player._id }))
+    const created = await Character.insertMany([...demoCharacters, ...playerCharacters])
+    console.log(`Inserted ${demoCharacters.length} characters for demo and ${playerCharacters.length} for test player`)
+
+    const campaign = await Game.create({
+      name: 'The Lost Mine',
+      gameType: 'DND 2024',
+      description: 'A test campaign for the party invitation flow.',
+      owner: demo._id,
+      joinCode: 'LOSTMINE',
+      members: [
+        { user: demo._id, character: created[0]._id },
+        { user: player._id, character: created[2]._id }
+      ]
+    })
+    await Character.updateOne({ _id: created[0]._id }, { game: campaign._id })
+    await Character.updateOne({ _id: created[2]._id }, { game: campaign._id })
+    console.log(`Created DND game "${campaign.name}" with Aelwyn and Mira`)
   }catch(err){
     console.error('Seed error', err)
   }finally{

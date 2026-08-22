@@ -43,3 +43,20 @@ export async function me(req, res){
     res.status(400).json({ error: err.message })
   }
 }
+
+export async function updatePreferences(req, res){
+  try{
+    if(!req.userId) return res.status(401).json({ error: 'Not authorized' })
+    const { theme } = req.body
+    if(!['dark', 'light'].includes(theme)) return res.status(400).json({ error: 'Theme must be dark or light' })
+    const user = await User.findByIdAndUpdate(
+      req.userId,
+      { theme },
+      { new: true, runValidators: true }
+    ).select('-password')
+    if(!user) return res.status(404).json({ error: 'Not found' })
+    res.json({ user })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}

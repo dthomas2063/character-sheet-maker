@@ -6,7 +6,7 @@ function forbidden(res){ return res.status(403).json({ error: 'Forbidden' }) }
 export async function listCharacters(req, res){
   try{
     if(!req.userId) return res.status(401).json({ error: 'Unauthorized' })
-    const items = await Character.find({ owner: req.userId }).sort({createdAt:-1}).limit(100)
+    const items = await Character.find({ owner: req.userId }).populate('game', 'name').sort({createdAt:-1}).limit(100)
     res.json(items)
   }catch(err){
     res.status(500).json({error: err.message})

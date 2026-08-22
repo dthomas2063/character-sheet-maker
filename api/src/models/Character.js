@@ -93,6 +93,7 @@ const CharacterSchema = new Schema({
   notes: { type: String }
   ,
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  ,game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game', default: null }
 }, { timestamps: true })
 
 // Virtuals: ability modifiers and computed level

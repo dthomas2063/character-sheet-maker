@@ -2,11 +2,15 @@ import React, { useMemo, useState } from 'react'
 import spellsData from '../data/spells_wikidot_full.json'
 import './spells.css'
 
-function SpellRow({s, onOpen}){
+function formatSpellLevel(level){
+  return level === 0 || level === '0' || level === 'Cantrip' ? 'Cantrip' : `L${level}`
+}
+
+function SpellRow({s, onOpen, selected}){
   return (
-    <div className="spell-row" onClick={()=>onOpen(s)}>
+    <div className={`spell-row${selected ? ' selected' : ''}`} onClick={()=>onOpen(s)}>
       <div className="spell-name">{s.name}{s.ritual ? <span className="ritual-badge"> ritual</span> : null}</div>
-      <div className="spell-meta">L{s.level} • {s.school} • {s.duration || '—'}</div>
+      <div className="spell-meta">{formatSpellLevel(s.level)} • {s.school} • {s.duration || '—'}</div>
     </div>
   )
 }
@@ -69,14 +73,14 @@ export default function Spells(){
       <div className="spells-grid">
         <div className="spells-list">
           {spells.map(s => (
-            <SpellRow key={s.name} s={s} onOpen={setSelected} />
+            <SpellRow key={s.name} s={s} onOpen={setSelected} selected={selected?.name === s.name} />
           ))}
         </div>
 
         <div className="spells-detail">
           {selected ? (
             <div>
-              <h2>{selected.name} <span className="small">(L{selected.level} {selected.school})</span></h2>
+              <h2>{selected.name} <span className="small">({formatSpellLevel(selected.level)} {selected.school})</span></h2>
                 <p><strong>Casting:</strong> {selected.casting_time} • <strong>Range:</strong> {selected.range}</p>
                 <p><strong>Duration:</strong> {selected.duration || 'Instantaneous'}{selected.ritual ? ' • Ritual' : ''}</p>
                 {selected.components && <p><strong>Components:</strong> {selected.components.join(', ')}{selected.material ? ` — ${selected.material}` : ''}</p>}
