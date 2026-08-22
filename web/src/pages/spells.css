@@ -1,0 +1,16 @@
+.spells-page{padding:12px}
+.spells-controls{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.spells-controls input{flex:1;padding:8px}
+.filters{display:flex;gap:8px;align-items:center;margin-left:8px}
+.filter-select{padding:6px}
+.spells-count{white-space:nowrap;color:#666}
+.spells-grid{display:flex;gap:16px}
+.spells-list{width:320px;max-height:70vh;overflow:auto;border:1px solid #eee;padding:6px;background:#fafafa}
+.spell-row{padding:8px 6px;border-bottom:1px solid #f0f0f0;cursor:pointer}
+.spell-row:hover{background:#f5f7ff}
+.spell-name{font-weight:600}
+.spell-meta{font-size:12px;color:#666}
+.spells-detail{flex:1;border:1px solid #eee;padding:12px;max-height:70vh;overflow:auto;background:#fff}
+.placeholder{color:#888}
+.small{font-size:12px;color:#666;margin-left:6px}
+.spell-desc p{margin:8px 0}

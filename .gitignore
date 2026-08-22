@@ -398,6 +398,21 @@ MSBuild_Logs/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+# Vite / build
+dist/
+.vite/
+
+# Local env files
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+
+# API
+api/node_modules/
+api/.env
+
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 

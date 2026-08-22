@@ -1,0 +1,22 @@
+{
+  "name": "character-sheet-maker",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "preview": "npm --prefix web run preview",
+    "install:web": "npm --prefix web install",
+    "dev:api": "npm --prefix api run dev",
+    "start:api": "npm --prefix api run start",
+    "install:api": "npm --prefix api install",
+    "seed:api": "npm --prefix api run seed",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
+    "generate:spells": "node scripts/generate_spells.js"
+    ,"add:srd:descs": "node scripts/add_srd_descs.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+  ,
+  "scripts_additional": {}
+}
