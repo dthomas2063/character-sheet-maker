@@ -10,11 +10,22 @@ import api, { setAuthToken } from './api/axios'
 
 export default function App(){
   const [token, setToken] = useState(null)
+  const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
   useEffect(()=>{
     try{ const t = localStorage.getItem('authToken'); if(t) setToken(t) }catch(e){}
   },[])
+
+  useEffect(()=>{
+    async function load(){
+      try{
+        const res = await api.get('/auth/me')
+        setUser(res.data.user)
+      }catch(e){ /* ignore */ }
+    }
+    if(token) load()
+  },[token])
 
   function handleLogout(){
     setAuthToken(null)
@@ -27,8 +38,8 @@ export default function App(){
       <nav>
         <Link to="/">Home</Link> | <Link to="/spells">Spells</Link> | <Link to="/about">About</Link>
         {' '}
-        {token ? (
-          <button style={{marginLeft:8}} onClick={handleLogout}>Logout</button>
+        {user ? (
+          <span style={{marginLeft:8}}>Hello, {user.name || user.email} <button onClick={handleLogout} style={{marginLeft:8}}>Logout</button></span>
         ) : (
           <>
             <Link to="/login" style={{marginLeft:8}}>Login</Link>

@@ -32,3 +32,14 @@ export async function login(req, res){
     res.status(400).json({ error: err.message })
   }
 }
+
+export async function me(req, res){
+  try{
+    if(!req.userId) return res.status(401).json({ error: 'Not authorized' })
+    const user = await User.findById(req.userId).select('-password')
+    if(!user) return res.status(404).json({ error: 'Not found' })
+    res.json({ user })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
