@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import morgan from 'morgan'
 import cors from 'cors'
 import characterRoutes from './routes/characters.js'
+import authRoutes from './routes/auth.js'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => res.json({ok: true, message: 'Character Sheet API'}))
+app.use('/auth', authRoutes)
 app.use('/characters', characterRoutes)
 
 app.get('/example', (req, res) => {
