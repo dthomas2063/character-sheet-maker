@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import Game from '../models/Game.js'
 import User from '../models/User.js'
 import Character from '../models/Character.js'
+import ChatMessage from '../models/ChatMessage.js'
 
 const GAME_TYPES = ['DND 2024', 'Starwars FFG', 'The One Ring']
 
@@ -142,5 +143,24 @@ export async function getGame(req, res){
     res.json(game)
   }catch(err){
     res.status(400).json({ error: err.message })
+  }
+}
+
+export async function listGameMessages(req, res){
+  try{
+    const game = await Game.findById(req.params.id).select('owner members')
+    if(!game) return notFound(res)
+    if(!canView(game, req.userId)) return forbidden(res)
+    const messages = await ChatMessage.find({
+      game: game._id,
+      $or: [
+        { recipient: null },
+        { sender: req.userId },
+        { recipient: req.userId }
+      ]
+    }).populate('sender', 'name email').populate('recipient', 'name email').sort({ createdAt: 1 }).limit(200)
+    res.json(messages)
+  }catch(err){
+    res.status(500).json({ error: err.message })
   }
 }

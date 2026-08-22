@@ -135,6 +135,7 @@
     border-radius: 4px;
     color: var(--accent);
     font-size: 0.8rem;
+    text-decoration: none;
     white-space: nowrap;
 }
 
@@ -186,4 +187,17 @@
     .character-game {
         margin-left: auto;
     }
+}
+
+.character-main-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.character-main-link:hover .character-summary strong {
+    text-decoration: underline;
 }

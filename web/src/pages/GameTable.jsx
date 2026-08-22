@@ -4,6 +4,7 @@ import api from '../api/axios'
 import './game-table.css'
 import GameSidebar from './GameSidebar'
 import GameNavBar from './GameNavBar'
+import GameChat from './GameChat'
 import './game-table-workspace.css'
 
 export default function GameTable({ user }){
@@ -33,8 +34,13 @@ export default function GameTable({ user }){
         <div className="character-orb-strip" aria-label="Characters in this game">
           {game.members.map(member => {
             const characterName = member.character?.name || member.user?.name || member.user?.email || 'Character'
-            return <span className="character-orb" key={member.character?._id || member.user?._id || member.user} title={characterName} aria-label={characterName}>{characterName.charAt(0).toUpperCase()}</span>
+            const isMine = String(member.user?._id || member.user) === String(user?._id)
+            return <span className={`character-orb${isMine ? ' own-character' : ''}`} key={member.character?._id || member.user?._id || member.user} title={isMine ? `${characterName} (me)` : characterName} aria-label={isMine ? `${characterName}, my character` : characterName}>{characterName.charAt(0).toUpperCase()}</span>
           })}
+        </div>
+        <div className="tabletop-main">
+          <div className="tabletop-stage" aria-label="Virtual tabletop area"></div>
+          <GameChat game={game} user={user} />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api, { setAuthToken } from '../api/axios'
 
-export default function Register(){
+export default function Register({ onLogin }){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -16,6 +16,7 @@ export default function Register(){
       const res = await api.post('/auth/register', { email, password, name })
       const token = res.data.token
       setAuthToken(token)
+      onLogin(token, res.data.user)
       navigate('/')
     }catch(err){
       setError(err.response?.data?.error || err.message || 'Register failed')

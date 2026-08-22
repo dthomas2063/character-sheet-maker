@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api, { setAuthToken } from '../api/axios'
+import './auth.css'
 
-export default function Login(){
+export default function Login({ onLogin }){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -15,6 +16,7 @@ export default function Login(){
       const res = await api.post('/auth/login', { email, password })
       const token = res.data.token
       setAuthToken(token)
+      onLogin(token, res.data.user)
       navigate('/')
     }catch(err){
       setError(err.response?.data?.error || err.message || 'Login failed')
@@ -22,15 +24,15 @@ export default function Login(){
   }
 
   return (
-    <div style={{padding:12}}>
+    <div className="auth-page">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit} style={{maxWidth:420}}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <div><input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} required /></div>
         <div><input placeholder="Password" type="password" value={password} onChange={e=>setPassword(e.target.value)} required /></div>
-        {error && <div style={{color:'red'}}>{error}</div>}
-        <div style={{marginTop:8}}>
+        {error && <div className="auth-error">{error}</div>}
+        <div className="auth-actions">
           <button type="submit">Login</button>
-          <Link to="/register" style={{marginLeft:8}}>Register</Link>
+          <Link className="auth-link" to="/register">Register</Link>
         </div>
       </form>
     </div>

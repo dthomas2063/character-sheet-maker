@@ -15,12 +15,12 @@ function SpellRow({s, onOpen, selected}){
   )
 }
 
-export default function Spells(){
+export default function Spells({ initialClassFilter = 'all' }){
   const [q, setQ] = useState('')
   const [selected, setSelected] = useState(null)
   const [levelFilter, setLevelFilter] = useState('all')
   const [schoolFilter, setSchoolFilter] = useState('all')
-  const [classFilter, setClassFilter] = useState('all')
+  const [classFilter, setClassFilter] = useState(initialClassFilter)
 
   const levels = useMemo(()=>{
     return Array.from(new Set(spellsData.map(s=>s.level).filter(s=>s!=null))).sort((a,b)=>a-b)

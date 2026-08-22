@@ -68,16 +68,18 @@ export default function CharacterList(){
       <ul className="character-list">
         {chars.map(c => (
           <li key={c._id}>
-            <Link className="character-card" to={`/characters/${c._id}`}>
-              <span className="character-avatar">{c.name?.charAt(0).toUpperCase()}</span>
-              <span className="character-summary">
-                <strong>{c.name}</strong>
-                <span>{c.classes && c.classes.map(x=>x.name).join(' / ')}</span>
-              </span>
-              {c.game && <span className="character-game">{c.game.name}</span>}
+            <div className="character-card">
+              <Link className="character-main-link" to={`/characters/${c._id}`}>
+                <span className="character-avatar">{c.name?.charAt(0).toUpperCase()}</span>
+                <span className="character-summary">
+                  <strong>{c.name}</strong>
+                  <span>{c.classes && c.classes.map(x=>x.name).join(' / ')}</span>
+                </span>
+              </Link>
+              {c.game && <Link className="character-game" to={`/games/${c.game._id}`}>{c.game.name}</Link>}
               <span className="character-level">Level {c.level}</span>
               <span className="card-arrow" aria-hidden="true">-&gt;</span>
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

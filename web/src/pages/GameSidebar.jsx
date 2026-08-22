@@ -8,7 +8,8 @@ export default function GameSidebar({ gameName, gameId }){
   const links = [
     { to: `/games/${gameId}`, label: 'Game table', icon: 'T', end: true },
     { to: `/games/${gameId}/players`, label: 'Players', icon: 'P' },
-    { to: `/games/${gameId}/settings`, label: 'Game settings', icon: 'S' }
+    { to: `/games/${gameId}/spells`, label: 'Spells', icon: 'S' },
+    { to: `/games/${gameId}/settings`, label: 'Game settings', icon: 'G' }
   ]
 
   return (

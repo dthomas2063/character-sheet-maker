@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Routes, Route, Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Routes, Route, Link, NavLink, Navigate, useNavigate } from 'react-router-dom'
 import CharacterList from './pages/CharacterList'
 import About from './pages/About'
 import Spells from './pages/Spells'
@@ -11,24 +11,37 @@ import Games from './pages/Games'
 import GameTable from './pages/GameTable'
 import GameSettings from './pages/GameSettings'
 import GamePlayers from './pages/GamePlayers'
+import GameSpells from './pages/GameSpells'
 import api, { setAuthToken } from './api/axios'
 
+function ProtectedRoute({ token, children }){
+  return token ? children : <Navigate to="/login" replace />
+}
+
 export default function App(){
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(()=>{
+    try{ return localStorage.getItem('authToken') }
+    catch(e){ return null }
+  })
   const [user, setUser] = useState(null)
   const [theme, setTheme] = useState(()=>{
     try{ return localStorage.getItem('theme') || 'dark' }catch(e){ return 'dark' }
   })
+  const userMenuRef = useRef(null)
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    function closeMenu(event){
+      if(userMenuRef.current && !userMenuRef.current.contains(event.target)) userMenuRef.current.open = false
+    }
+    document.addEventListener('mousedown', closeMenu)
+    return ()=>document.removeEventListener('mousedown', closeMenu)
+  }, [])
 
   useEffect(()=>{
     document.documentElement.dataset.theme = theme
     try{ localStorage.setItem('theme', theme) }catch(e){}
   }, [theme])
-
-  useEffect(()=>{
-    try{ const t = localStorage.getItem('authToken'); if(t) setToken(t) }catch(e){}
-  },[])
 
   useEffect(()=>{
     async function load(){
@@ -42,9 +55,20 @@ export default function App(){
   },[token])
 
   function handleLogout(){
+    if(userMenuRef.current) userMenuRef.current.open = false
     setAuthToken(null)
     setToken(null)
+    setUser(null)
     navigate('/')
+  }
+
+  function handleLogin(nextToken, nextUser){
+    setToken(nextToken)
+    setUser(nextUser)
+  }
+
+  function closeUserMenu(){
+    if(userMenuRef.current) userMenuRef.current.open = false
   }
 
   function handleThemeChange(nextTheme){
@@ -62,14 +86,14 @@ export default function App(){
         </div>
         {' '}
         {user ? (
-          <details className="user-menu">
+          <details className="user-menu" ref={userMenuRef}>
             <summary>
               <span className="user-avatar">{(user.name || user.email)?.charAt(0).toUpperCase()}</span>
               <span className="user-name">{user.name || user.email}</span>
               <span className="user-menu-arrow" aria-hidden="true">&#9662;</span>
             </summary>
             <div className="user-menu-options">
-              <Link to="/preferences">Preferences</Link>
+              <Link to="/preferences" onClick={closeUserMenu}>Preferences</Link>
               <button onClick={handleLogout}>Logout</button>
             </div>
           </details>
@@ -82,17 +106,18 @@ export default function App(){
       </nav>
       <main>
         <Routes>
-          <Route path="/" element={<CharacterList/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/spells" element={<Spells/>}/>
-          <Route path="/characters/:id" element={<Character/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/preferences" element={<Preferences theme={theme} onThemeChange={handleThemeChange}/>}/>
-          <Route path="/games" element={<Games user={user}/>}/>
-          <Route path="/games/:id" element={<GameTable user={user}/>}/>
-          <Route path="/games/:id/settings" element={<GameSettings user={user}/>}/>
-          <Route path="/games/:id/players" element={<GamePlayers user={user}/>}/>
+          <Route path="/" element={<ProtectedRoute token={token}><CharacterList/></ProtectedRoute>}/>
+          <Route path="/about" element={<ProtectedRoute token={token}><About/></ProtectedRoute>}/>
+          <Route path="/spells" element={<ProtectedRoute token={token}><Spells/></ProtectedRoute>}/>
+          <Route path="/characters/:id" element={<ProtectedRoute token={token}><Character/></ProtectedRoute>}/>
+          <Route path="/login" element={<Login onLogin={handleLogin}/>}/>
+          <Route path="/register" element={<Register onLogin={handleLogin}/>}/>
+          <Route path="/preferences" element={<ProtectedRoute token={token}><Preferences theme={theme} onThemeChange={handleThemeChange}/></ProtectedRoute>}/>
+          <Route path="/games" element={<ProtectedRoute token={token}><Games user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id" element={<ProtectedRoute token={token}><GameTable user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id/settings" element={<ProtectedRoute token={token}><GameSettings user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id/players" element={<ProtectedRoute token={token}><GamePlayers user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id/spells" element={<ProtectedRoute token={token}><GameSpells/></ProtectedRoute>}/>
         </Routes>
       </main>
     </div>
