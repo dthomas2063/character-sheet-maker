@@ -13,6 +13,8 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
     "generate:spells": "node scripts/generate_spells.js"
     ,"add:srd:descs": "node scripts/add_srd_descs.js"
+    ,"generate:spells:wikidot": "node scripts/generate_spells_wikidot.js"
+    ,"generate:spells:wikidot:full": "node scripts/enrich_spells_wikidot.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"

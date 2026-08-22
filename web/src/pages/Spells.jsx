@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import spellsData from '../data/spells.json'
+import spellsData from '../data/spells_wikidot_full.json'
 import './spells.css'
 
 function SpellRow({s, onOpen}){
@@ -19,7 +19,7 @@ export default function Spells(){
   const [classFilter, setClassFilter] = useState('all')
 
   const levels = useMemo(()=>{
-    return Array.from(new Set(spellsData.map(s=>s.level))).sort((a,b)=>a-b)
+    return Array.from(new Set(spellsData.map(s=>s.level).filter(s=>s!=null))).sort((a,b)=>a-b)
   },[])
   const schools = useMemo(()=>{
     return Array.from(new Set(spellsData.map(s=>s.school))).filter(Boolean).sort()
@@ -51,7 +51,7 @@ export default function Spells(){
         <div className="filters">
           <select value={levelFilter} onChange={e=>setLevelFilter(e.target.value)} className="filter-select">
             <option value="all">All levels</option>
-            {levels.map(l=> (<option key={l} value={l}>Level {l}</option>))}
+            {levels.map(l=> (<option key={l} value={l}>{l == 'Cantrip'?'Cantrip':'Level ' + l}</option>))}
           </select>
           <select value={schoolFilter} onChange={e=>setSchoolFilter(e.target.value)} className="filter-select">
             <option value="all">All schools</option>

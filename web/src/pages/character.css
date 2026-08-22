@@ -5,13 +5,13 @@
 }
 
 .sheet {
-	background: linear-gradient(#f8fafc, #fff);
 	padding: 20px;
 	border-radius: 6px;
 	box-shadow: 0 4px 18px rgba(11, 22, 34, 0.06);
 	max-width: 1100px;
 	margin: 14px auto;
 	font-family: Georgia, 'Times New Roman', serif;
+	background: #e7e8ea;
 	color: #0b1720
 }
 

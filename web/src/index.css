@@ -1,4 +1,21 @@
-:root{--bg:#f7f7f8;--fg:#111}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); color:var(--fg)}
-.app{max-width:900px;margin:24px auto;padding:16px}
-nav{margin-bottom:12px}
+:root {
+    --bg: #000;
+    --fg: #dcdcdc;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    background: var(--bg);
+    color: var(--fg)
+}
+
+.app {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 16px
+}
+
+nav {
+    margin-bottom: 12px
+}

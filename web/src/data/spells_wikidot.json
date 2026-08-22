@@ -1,0 +1,1678 @@
+[
+  {
+    "name": "Acid Splash",
+    "url": "http://dnd2024.wikidot.com/spell:acid-splash"
+  },
+  {
+    "name": "Blade Ward",
+    "url": "http://dnd2024.wikidot.com/spell:blade-ward"
+  },
+  {
+    "name": "Chill Touch",
+    "url": "http://dnd2024.wikidot.com/spell:chill-touch"
+  },
+  {
+    "name": "Dancing Lights",
+    "url": "http://dnd2024.wikidot.com/spell:dancing-lights"
+  },
+  {
+    "name": "Druidcraft",
+    "url": "http://dnd2024.wikidot.com/spell:druidcraft"
+  },
+  {
+    "name": "Eldritch Blast",
+    "url": "http://dnd2024.wikidot.com/spell:eldritch-blast"
+  },
+  {
+    "name": "Elementalism",
+    "url": "http://dnd2024.wikidot.com/spell:elementalism"
+  },
+  {
+    "name": "Fire Bolt",
+    "url": "http://dnd2024.wikidot.com/spell:fire-bolt"
+  },
+  {
+    "name": "Friends",
+    "url": "http://dnd2024.wikidot.com/spell:friends"
+  },
+  {
+    "name": "Guidance",
+    "url": "http://dnd2024.wikidot.com/spell:guidance"
+  },
+  {
+    "name": "Light",
+    "url": "http://dnd2024.wikidot.com/spell:light"
+  },
+  {
+    "name": "Mage Hand",
+    "url": "http://dnd2024.wikidot.com/spell:mage-hand"
+  },
+  {
+    "name": "Mending",
+    "url": "http://dnd2024.wikidot.com/spell:mending"
+  },
+  {
+    "name": "Message",
+    "url": "http://dnd2024.wikidot.com/spell:message"
+  },
+  {
+    "name": "Mind Sliver",
+    "url": "http://dnd2024.wikidot.com/spell:mind-sliver"
+  },
+  {
+    "name": "Minor Illusion",
+    "url": "http://dnd2024.wikidot.com/spell:minor-illusion"
+  },
+  {
+    "name": "Poison Spray",
+    "url": "http://dnd2024.wikidot.com/spell:poison-spray"
+  },
+  {
+    "name": "Prestidigitation",
+    "url": "http://dnd2024.wikidot.com/spell:prestidigitation"
+  },
+  {
+    "name": "Produce Flame",
+    "url": "http://dnd2024.wikidot.com/spell:produce-flame"
+  },
+  {
+    "name": "Ray of Frost",
+    "url": "http://dnd2024.wikidot.com/spell:ray-of-frost"
+  },
+  {
+    "name": "Resistance",
+    "url": "http://dnd2024.wikidot.com/spell:resistance"
+  },
+  {
+    "name": "Sacred Flame",
+    "url": "http://dnd2024.wikidot.com/spell:sacred-flame"
+  },
+  {
+    "name": "Shillelagh",
+    "url": "http://dnd2024.wikidot.com/spell:shillelagh"
+  },
+  {
+    "name": "Shocking Grasp",
+    "url": "http://dnd2024.wikidot.com/spell:shocking-grasp"
+  },
+  {
+    "name": "Sorcerous Burst",
+    "url": "http://dnd2024.wikidot.com/spell:sorcerous-burst"
+  },
+  {
+    "name": "Spare the Dying",
+    "url": "http://dnd2024.wikidot.com/spell:spare-the-dying"
+  },
+  {
+    "name": "Starry Wisp",
+    "url": "http://dnd2024.wikidot.com/spell:starry-wisp"
+  },
+  {
+    "name": "Thaumaturgy",
+    "url": "http://dnd2024.wikidot.com/spell:thaumaturgy"
+  },
+  {
+    "name": "Thorn Whip",
+    "url": "http://dnd2024.wikidot.com/spell:thorn-whip"
+  },
+  {
+    "name": "Thunderclap",
+    "url": "http://dnd2024.wikidot.com/spell:thunderclap"
+  },
+  {
+    "name": "Toll the Dead",
+    "url": "http://dnd2024.wikidot.com/spell:toll-the-dead"
+  },
+  {
+    "name": "True Strike",
+    "url": "http://dnd2024.wikidot.com/spell:true-strike"
+  },
+  {
+    "name": "Vicious Mockery",
+    "url": "http://dnd2024.wikidot.com/spell:vicious-mockery"
+  },
+  {
+    "name": "Word of Radiance",
+    "url": "http://dnd2024.wikidot.com/spell:word-of-radiance"
+  },
+  {
+    "name": "Alarm",
+    "url": "http://dnd2024.wikidot.com/spell:alarm"
+  },
+  {
+    "name": "Animal Friendship",
+    "url": "http://dnd2024.wikidot.com/spell:animal-friendship"
+  },
+  {
+    "name": "Armor of Agathys",
+    "url": "http://dnd2024.wikidot.com/spell:armor-of-agathys"
+  },
+  {
+    "name": "Arms of Hadar",
+    "url": "http://dnd2024.wikidot.com/spell:arms-of-hadar"
+  },
+  {
+    "name": "Bane",
+    "url": "http://dnd2024.wikidot.com/spell:bane"
+  },
+  {
+    "name": "Bless",
+    "url": "http://dnd2024.wikidot.com/spell:bless"
+  },
+  {
+    "name": "Burning Hands",
+    "url": "http://dnd2024.wikidot.com/spell:burning-hands"
+  },
+  {
+    "name": "Buzzing Bee",
+    "url": "http://dnd2024.wikidot.com/spell:buzzing-bee"
+  },
+  {
+    "name": "Charm Person",
+    "url": "http://dnd2024.wikidot.com/spell:charm-person"
+  },
+  {
+    "name": "Chromatic Orb",
+    "url": "http://dnd2024.wikidot.com/spell:chromatic-orb"
+  },
+  {
+    "name": "Color Spray",
+    "url": "http://dnd2024.wikidot.com/spell:color-spray"
+  },
+  {
+    "name": "Command",
+    "url": "http://dnd2024.wikidot.com/spell:command"
+  },
+  {
+    "name": "Compelled Duel",
+    "url": "http://dnd2024.wikidot.com/spell:compelled-duel"
+  },
+  {
+    "name": "Comprehend Languages",
+    "url": "http://dnd2024.wikidot.com/spell:comprehend-languages"
+  },
+  {
+    "name": "Create or Destroy Water",
+    "url": "http://dnd2024.wikidot.com/spell:create-or-destroy-water"
+  },
+  {
+    "name": "Cure Wounds",
+    "url": "http://dnd2024.wikidot.com/spell:cure-wounds"
+  },
+  {
+    "name": "Detect Evil and Good",
+    "url": "http://dnd2024.wikidot.com/spell:detect-evil-and-good"
+  },
+  {
+    "name": "Detect Magic",
+    "url": "http://dnd2024.wikidot.com/spell:detect-magic"
+  },
+  {
+    "name": "Detect Poison and Disease",
+    "url": "http://dnd2024.wikidot.com/spell:detect-poison-and-disease"
+  },
+  {
+    "name": "Disguise Self",
+    "url": "http://dnd2024.wikidot.com/spell:disguise-self"
+  },
+  {
+    "name": "Dissonant Whispers",
+    "url": "http://dnd2024.wikidot.com/spell:dissonant-whispers"
+  },
+  {
+    "name": "Divine Favor",
+    "url": "http://dnd2024.wikidot.com/spell:divine-favor"
+  },
+  {
+    "name": "Divine Smite",
+    "url": "http://dnd2024.wikidot.com/spell:divine-smite"
+  },
+  {
+    "name": "Ensnaring Strike",
+    "url": "http://dnd2024.wikidot.com/spell:ensnaring-strike"
+  },
+  {
+    "name": "Entangle",
+    "url": "http://dnd2024.wikidot.com/spell:entangle"
+  },
+  {
+    "name": "Expeditious Retreat",
+    "url": "http://dnd2024.wikidot.com/spell:expeditious-retreat"
+  },
+  {
+    "name": "Faerie Fire",
+    "url": "http://dnd2024.wikidot.com/spell:faerie-fire"
+  },
+  {
+    "name": "False Life",
+    "url": "http://dnd2024.wikidot.com/spell:false-life"
+  },
+  {
+    "name": "Feather Fall",
+    "url": "http://dnd2024.wikidot.com/spell:feather-fall"
+  },
+  {
+    "name": "Find Familiar",
+    "url": "http://dnd2024.wikidot.com/spell:find-familiar"
+  },
+  {
+    "name": "Fog Cloud",
+    "url": "http://dnd2024.wikidot.com/spell:fog-cloud"
+  },
+  {
+    "name": "Goodberry",
+    "url": "http://dnd2024.wikidot.com/spell:goodberry"
+  },
+  {
+    "name": "Grease",
+    "url": "http://dnd2024.wikidot.com/spell:grease"
+  },
+  {
+    "name": "Guiding Bolt",
+    "url": "http://dnd2024.wikidot.com/spell:guiding-bolt"
+  },
+  {
+    "name": "Hail of Thorns",
+    "url": "http://dnd2024.wikidot.com/spell:hail-of-thorns"
+  },
+  {
+    "name": "Healing Word",
+    "url": "http://dnd2024.wikidot.com/spell:healing-word"
+  },
+  {
+    "name": "Hellish Rebuke",
+    "url": "http://dnd2024.wikidot.com/spell:hellish-rebuke"
+  },
+  {
+    "name": "Heroism",
+    "url": "http://dnd2024.wikidot.com/spell:heroism"
+  },
+  {
+    "name": "Hex",
+    "url": "http://dnd2024.wikidot.com/spell:hex"
+  },
+  {
+    "name": "Hunter's Mark",
+    "url": "http://dnd2024.wikidot.com/spell:hunter-s-mark"
+  },
+  {
+    "name": "Ice Knife",
+    "url": "http://dnd2024.wikidot.com/spell:ice-knife"
+  },
+  {
+    "name": "Identify",
+    "url": "http://dnd2024.wikidot.com/spell:identify"
+  },
+  {
+    "name": "Illusory Script",
+    "url": "http://dnd2024.wikidot.com/spell:illusory-script"
+  },
+  {
+    "name": "Inflict Wounds",
+    "url": "http://dnd2024.wikidot.com/spell:inflict-wounds"
+  },
+  {
+    "name": "Insidious Rhythm",
+    "url": "http://dnd2024.wikidot.com/spell:insidious-rhythm"
+  },
+  {
+    "name": "Jump",
+    "url": "http://dnd2024.wikidot.com/spell:jump"
+  },
+  {
+    "name": "Longstrider",
+    "url": "http://dnd2024.wikidot.com/spell:longstrider"
+  },
+  {
+    "name": "Mage Armor",
+    "url": "http://dnd2024.wikidot.com/spell:mage-armor"
+  },
+  {
+    "name": "Magic Missile",
+    "url": "http://dnd2024.wikidot.com/spell:magic-missile"
+  },
+  {
+    "name": "Protection from Evil and Good",
+    "url": "http://dnd2024.wikidot.com/spell:protection-from-evil-and-good"
+  },
+  {
+    "name": "Purify Food and Drink",
+    "url": "http://dnd2024.wikidot.com/spell:purify-food-and-drink"
+  },
+  {
+    "name": "Ray of Sickness",
+    "url": "http://dnd2024.wikidot.com/spell:ray-of-sickness"
+  },
+  {
+    "name": "Sanctuary",
+    "url": "http://dnd2024.wikidot.com/spell:sanctuary"
+  },
+  {
+    "name": "Searing Smite",
+    "url": "http://dnd2024.wikidot.com/spell:searing-smite"
+  },
+  {
+    "name": "Shield",
+    "url": "http://dnd2024.wikidot.com/spell:shield"
+  },
+  {
+    "name": "Shield of Faith",
+    "url": "http://dnd2024.wikidot.com/spell:shield-of-faith"
+  },
+  {
+    "name": "Silent Image",
+    "url": "http://dnd2024.wikidot.com/spell:silent-image"
+  },
+  {
+    "name": "Sleep",
+    "url": "http://dnd2024.wikidot.com/spell:sleep"
+  },
+  {
+    "name": "Speak with Animals",
+    "url": "http://dnd2024.wikidot.com/spell:speak-with-animals"
+  },
+  {
+    "name": "Spellfire Flare",
+    "url": "http://dnd2024.wikidot.com/spell:spellfire-flare"
+  },
+  {
+    "name": "Tasha's Hideous Laughter",
+    "url": "http://dnd2024.wikidot.com/spell:tasha-s-hideous-laughter"
+  },
+  {
+    "name": "Tenser's Floating Disk",
+    "url": "http://dnd2024.wikidot.com/spell:tenser-s-floating-disk"
+  },
+  {
+    "name": "Thunderous Smite",
+    "url": "http://dnd2024.wikidot.com/spell:thunderous-smite"
+  },
+  {
+    "name": "Thunderwave",
+    "url": "http://dnd2024.wikidot.com/spell:thunderwave"
+  },
+  {
+    "name": "Unseen Servant",
+    "url": "http://dnd2024.wikidot.com/spell:unseen-servant"
+  },
+  {
+    "name": "Wardaway",
+    "url": "http://dnd2024.wikidot.com/spell:wardaway"
+  },
+  {
+    "name": "Witch Bolt",
+    "url": "http://dnd2024.wikidot.com/spell:witch-bolt"
+  },
+  {
+    "name": "Wrathful Smite",
+    "url": "http://dnd2024.wikidot.com/spell:wrathful-smite"
+  },
+  {
+    "name": "Aid",
+    "url": "http://dnd2024.wikidot.com/spell:aid"
+  },
+  {
+    "name": "Alter Self",
+    "url": "http://dnd2024.wikidot.com/spell:alter-self"
+  },
+  {
+    "name": "Animal Messenger",
+    "url": "http://dnd2024.wikidot.com/spell:animal-messenger"
+  },
+  {
+    "name": "Arcane Lock",
+    "url": "http://dnd2024.wikidot.com/spell:arcane-lock"
+  },
+  {
+    "name": "Arcane Vigor",
+    "url": "http://dnd2024.wikidot.com/spell:arcane-vigor"
+  },
+  {
+    "name": "Augury",
+    "url": "http://dnd2024.wikidot.com/spell:augury"
+  },
+  {
+    "name": "Barkskin",
+    "url": "http://dnd2024.wikidot.com/spell:barkskin"
+  },
+  {
+    "name": "Beast Sense",
+    "url": "http://dnd2024.wikidot.com/spell:beast-sense"
+  },
+  {
+    "name": "Blindness/Deafness",
+    "url": "http://dnd2024.wikidot.com/spell:blindness-deafness"
+  },
+  {
+    "name": "Blur",
+    "url": "http://dnd2024.wikidot.com/spell:blur"
+  },
+  {
+    "name": "Calm Emotions",
+    "url": "http://dnd2024.wikidot.com/spell:calm-emotions"
+  },
+  {
+    "name": "Cloud Of Daggers",
+    "url": "http://dnd2024.wikidot.com/spell:cloud-of-daggers"
+  },
+  {
+    "name": "Continual Flame",
+    "url": "http://dnd2024.wikidot.com/spell:continual-flame"
+  },
+  {
+    "name": "Cordon Of Arrows",
+    "url": "http://dnd2024.wikidot.com/spell:cordon-of-arrows"
+  },
+  {
+    "name": "Crown Of Madness",
+    "url": "http://dnd2024.wikidot.com/spell:crown-of-madness"
+  },
+  {
+    "name": "Darkness",
+    "url": "http://dnd2024.wikidot.com/spell:darkness"
+  },
+  {
+    "name": "Darkvision",
+    "url": "http://dnd2024.wikidot.com/spell:darkvision"
+  },
+  {
+    "name": "Death Armor",
+    "url": "http://dnd2024.wikidot.com/spell:death-armor"
+  },
+  {
+    "name": "Deryan's Helpful Homunculi",
+    "url": "http://dnd2024.wikidot.com/spell:deryan-s-helpful-homunculi"
+  },
+  {
+    "name": "Detect Thoughts",
+    "url": "http://dnd2024.wikidot.com/spell:detect-thoughts"
+  },
+  {
+    "name": "Dragon's Breath",
+    "url": "http://dnd2024.wikidot.com/spell:dragon-s-breath"
+  },
+  {
+    "name": "Elminster's Elusion",
+    "url": "http://dnd2024.wikidot.com/spell:elminster-s-elusion"
+  },
+  {
+    "name": "Enhance Ability",
+    "url": "http://dnd2024.wikidot.com/spell:enhance-ability"
+  },
+  {
+    "name": "Enlarge/Reduce",
+    "url": "http://dnd2024.wikidot.com/spell:enlarge-reduce"
+  },
+  {
+    "name": "Enthrall",
+    "url": "http://dnd2024.wikidot.com/spell:enthrall"
+  },
+  {
+    "name": "Find Steed",
+    "url": "http://dnd2024.wikidot.com/spell:find-steed"
+  },
+  {
+    "name": "Find Traps",
+    "url": "http://dnd2024.wikidot.com/spell:find-traps"
+  },
+  {
+    "name": "Flame Blade",
+    "url": "http://dnd2024.wikidot.com/spell:flame-blade"
+  },
+  {
+    "name": "Flaming Sphere",
+    "url": "http://dnd2024.wikidot.com/spell:flaming-sphere"
+  },
+  {
+    "name": "Gentle Repose",
+    "url": "http://dnd2024.wikidot.com/spell:gentle-repose"
+  },
+  {
+    "name": "Gust of Wind",
+    "url": "http://dnd2024.wikidot.com/spell:gust-of-wind"
+  },
+  {
+    "name": "Heat Metal",
+    "url": "http://dnd2024.wikidot.com/spell:heat-metal"
+  },
+  {
+    "name": "Hold Person",
+    "url": "http://dnd2024.wikidot.com/spell:hold-person"
+  },
+  {
+    "name": "Homunculus Servant",
+    "url": "http://dnd2024.wikidot.com/spell:homunculus-servant"
+  },
+  {
+    "name": "Invisibility",
+    "url": "http://dnd2024.wikidot.com/spell:invisibility"
+  },
+  {
+    "name": "Knock",
+    "url": "http://dnd2024.wikidot.com/spell:knock"
+  },
+  {
+    "name": "Lesser Restoration",
+    "url": "http://dnd2024.wikidot.com/spell:lesser-restoration"
+  },
+  {
+    "name": "Levitate",
+    "url": "http://dnd2024.wikidot.com/spell:levitate"
+  },
+  {
+    "name": "Locate Animals or Plants",
+    "url": "http://dnd2024.wikidot.com/spell:locate-animals-or-plants"
+  },
+  {
+    "name": "Locate Object",
+    "url": "http://dnd2024.wikidot.com/spell:locate-object"
+  },
+  {
+    "name": "Magic Mouth",
+    "url": "http://dnd2024.wikidot.com/spell:magic-mouth"
+  },
+  {
+    "name": "Magic Weapon",
+    "url": "http://dnd2024.wikidot.com/spell:magic-weapon"
+  },
+  {
+    "name": "Melf's Acid Arrow",
+    "url": "http://dnd2024.wikidot.com/spell:melfs-acid-arrow"
+  },
+  {
+    "name": "Mind Spike",
+    "url": "http://dnd2024.wikidot.com/spell:mind-spike"
+  },
+  {
+    "name": "Mirror Image",
+    "url": "http://dnd2024.wikidot.com/spell:mirror-image"
+  },
+  {
+    "name": "Misty Step",
+    "url": "http://dnd2024.wikidot.com/spell:misty-step"
+  },
+  {
+    "name": "Moonbeam",
+    "url": "http://dnd2024.wikidot.com/spell:moonbeam"
+  },
+  {
+    "name": "Nystul's Magic Aura",
+    "url": "http://dnd2024.wikidot.com/spell:nystul-s-magic-aura"
+  },
+  {
+    "name": "Pass without Trace",
+    "url": "http://dnd2024.wikidot.com/spell:pass-without-trace"
+  },
+  {
+    "name": "Phantasmal Force",
+    "url": "http://dnd2024.wikidot.com/spell:phantasmal-force"
+  },
+  {
+    "name": "Prayer of Healing",
+    "url": "http://dnd2024.wikidot.com/spell:prayer-of-healing"
+  },
+  {
+    "name": "Protection from Poison",
+    "url": "http://dnd2024.wikidot.com/spell:protection-from-poison"
+  },
+  {
+    "name": "Ray of Enfeeblement",
+    "url": "http://dnd2024.wikidot.com/spell:ray-of-enfeeblement"
+  },
+  {
+    "name": "Rope Trick",
+    "url": "http://dnd2024.wikidot.com/spell:rope-trick"
+  },
+  {
+    "name": "Scorching Ray",
+    "url": "http://dnd2024.wikidot.com/spell:scorching-ray"
+  },
+  {
+    "name": "Searing Orb",
+    "url": "http://dnd2024.wikidot.com/spell:searing-orb"
+  },
+  {
+    "name": "See Invisibility",
+    "url": "http://dnd2024.wikidot.com/spell:see-invisibility"
+  },
+  {
+    "name": "Shatter",
+    "url": "http://dnd2024.wikidot.com/spell:shatter"
+  },
+  {
+    "name": "Shining Smite",
+    "url": "http://dnd2024.wikidot.com/spell:shining-smite"
+  },
+  {
+    "name": "Silence",
+    "url": "http://dnd2024.wikidot.com/spell:silence"
+  },
+  {
+    "name": "Spider Climb",
+    "url": "http://dnd2024.wikidot.com/spell:spider-climb"
+  },
+  {
+    "name": "Spike Growth",
+    "url": "http://dnd2024.wikidot.com/spell:spike-growth"
+  },
+  {
+    "name": "Spiritual Weapon",
+    "url": "http://dnd2024.wikidot.com/spell:spiritual-weapon"
+  },
+  {
+    "name": "Suggestion",
+    "url": "http://dnd2024.wikidot.com/spell:suggestion"
+  },
+  {
+    "name": "Summon Beast",
+    "url": "http://dnd2024.wikidot.com/spell:summon-beast"
+  },
+  {
+    "name": "Tortoise Shell",
+    "url": "http://dnd2024.wikidot.com/spell:tortoise-shell"
+  },
+  {
+    "name": "Warding Bond",
+    "url": "http://dnd2024.wikidot.com/spell:warding-bond"
+  },
+  {
+    "name": "Web",
+    "url": "http://dnd2024.wikidot.com/spell:web"
+  },
+  {
+    "name": "Zone of Truth",
+    "url": "http://dnd2024.wikidot.com/spell:zone-of-truth"
+  },
+  {
+    "name": "Animate Dead",
+    "url": "http://dnd2024.wikidot.com/spell:animate-dead"
+  },
+  {
+    "name": "Astral Flood",
+    "url": "http://dnd2024.wikidot.com/spell:astral-flood"
+  },
+  {
+    "name": "Aura of Vitality",
+    "url": "http://dnd2024.wikidot.com/spell:aura-of-vitality"
+  },
+  {
+    "name": "Beacon Of Hope",
+    "url": "http://dnd2024.wikidot.com/spell:beacon-of-hope"
+  },
+  {
+    "name": "Bestow Curse",
+    "url": "http://dnd2024.wikidot.com/spell:bestow-curse"
+  },
+  {
+    "name": "Blinding Smite",
+    "url": "http://dnd2024.wikidot.com/spell:blinding-smite"
+  },
+  {
+    "name": "Blink",
+    "url": "http://dnd2024.wikidot.com/spell:blink"
+  },
+  {
+    "name": "Cacophonic Shield",
+    "url": "http://dnd2024.wikidot.com/spell:cacophonic-shield"
+  },
+  {
+    "name": "Call Lightning",
+    "url": "http://dnd2024.wikidot.com/spell:call-lightning"
+  },
+  {
+    "name": "Clairvoyance",
+    "url": "http://dnd2024.wikidot.com/spell:clairvoyance"
+  },
+  {
+    "name": "Conjure Animals",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-animals"
+  },
+  {
+    "name": "Conjure Barrage",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-barrage"
+  },
+  {
+    "name": "Conjure Constructs",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-constructs"
+  },
+  {
+    "name": "Counterspell",
+    "url": "http://dnd2024.wikidot.com/spell:counterspell"
+  },
+  {
+    "name": "Create Food And Water",
+    "url": "http://dnd2024.wikidot.com/spell:create-food-and-water"
+  },
+  {
+    "name": "Crusader's Mantle",
+    "url": "http://dnd2024.wikidot.com/spell:crusader-s-mantle"
+  },
+  {
+    "name": "Daylight",
+    "url": "http://dnd2024.wikidot.com/spell:daylight"
+  },
+  {
+    "name": "Dispel Magic",
+    "url": "http://dnd2024.wikidot.com/spell:dispel-magic"
+  },
+  {
+    "name": "Elemental Weapon",
+    "url": "http://dnd2024.wikidot.com/spell:elemental-weapon"
+  },
+  {
+    "name": "Fear",
+    "url": "http://dnd2024.wikidot.com/spell:fear"
+  },
+  {
+    "name": "Feign Death",
+    "url": "http://dnd2024.wikidot.com/spell:feign-death"
+  },
+  {
+    "name": "Fireball",
+    "url": "http://dnd2024.wikidot.com/spell:fireball"
+  },
+  {
+    "name": "Fly",
+    "url": "http://dnd2024.wikidot.com/spell:fly"
+  },
+  {
+    "name": "Gaseous Form",
+    "url": "http://dnd2024.wikidot.com/spell:gaseous-form"
+  },
+  {
+    "name": "Glyph of Warding",
+    "url": "http://dnd2024.wikidot.com/spell:glyph-of-warding"
+  },
+  {
+    "name": "Haste",
+    "url": "http://dnd2024.wikidot.com/spell:haste"
+  },
+  {
+    "name": "Hunger of Hadar",
+    "url": "http://dnd2024.wikidot.com/spell:hunger-of-hadar"
+  },
+  {
+    "name": "Hypnotic Pattern",
+    "url": "http://dnd2024.wikidot.com/spell:hypnotic-pattern"
+  },
+  {
+    "name": "Laeral's Silver Lance",
+    "url": "http://dnd2024.wikidot.com/spell:laeral-s-silver-lance"
+  },
+  {
+    "name": "Leomund's Tiny Hut",
+    "url": "http://dnd2024.wikidot.com/spell:leomund-s-tiny-hut"
+  },
+  {
+    "name": "Lightning Arrow",
+    "url": "http://dnd2024.wikidot.com/spell:lightning-arrow"
+  },
+  {
+    "name": "Lightning Bolt",
+    "url": "http://dnd2024.wikidot.com/spell:lightning-bolt"
+  },
+  {
+    "name": "Magic Circle",
+    "url": "http://dnd2024.wikidot.com/spell:magic-circle"
+  },
+  {
+    "name": "Major Image",
+    "url": "http://dnd2024.wikidot.com/spell:major-image"
+  },
+  {
+    "name": "Mass Healing Word",
+    "url": "http://dnd2024.wikidot.com/spell:mass-healing-word"
+  },
+  {
+    "name": "Meld into Stone",
+    "url": "http://dnd2024.wikidot.com/spell:meld-into-stone"
+  },
+  {
+    "name": "Nondetection",
+    "url": "http://dnd2024.wikidot.com/spell:nondetection"
+  },
+  {
+    "name": "Phantom Steed",
+    "url": "http://dnd2024.wikidot.com/spell:phantom-steed"
+  },
+  {
+    "name": "Plant Growth",
+    "url": "http://dnd2024.wikidot.com/spell:plant-growth"
+  },
+  {
+    "name": "Protection from Energy",
+    "url": "http://dnd2024.wikidot.com/spell:protection-from-energy"
+  },
+  {
+    "name": "Remove Curse",
+    "url": "http://dnd2024.wikidot.com/spell:remove-curse"
+  },
+  {
+    "name": "Revivify",
+    "url": "http://dnd2024.wikidot.com/spell:revivify"
+  },
+  {
+    "name": "Sending",
+    "url": "http://dnd2024.wikidot.com/spell:sending"
+  },
+  {
+    "name": "Sleet Storm",
+    "url": "http://dnd2024.wikidot.com/spell:sleet-storm"
+  },
+  {
+    "name": "Slow",
+    "url": "http://dnd2024.wikidot.com/spell:slow"
+  },
+  {
+    "name": "Speak with Dead",
+    "url": "http://dnd2024.wikidot.com/spell:speak-with-dead"
+  },
+  {
+    "name": "Speak with Plants",
+    "url": "http://dnd2024.wikidot.com/spell:speak-with-plants"
+  },
+  {
+    "name": "Spirit Guardians",
+    "url": "http://dnd2024.wikidot.com/spell:spirit-guardians"
+  },
+  {
+    "name": "Stinking Cloud",
+    "url": "http://dnd2024.wikidot.com/spell:stinking-cloud"
+  },
+  {
+    "name": "Summon Fey",
+    "url": "http://dnd2024.wikidot.com/spell:summon-fey"
+  },
+  {
+    "name": "Summon Undead",
+    "url": "http://dnd2024.wikidot.com/spell:summon-undead"
+  },
+  {
+    "name": "Sylune's Viper",
+    "url": "http://dnd2024.wikidot.com/spell:sylune-s-viper"
+  },
+  {
+    "name": "Tongues",
+    "url": "http://dnd2024.wikidot.com/spell:tongues"
+  },
+  {
+    "name": "Vampiric Touch",
+    "url": "http://dnd2024.wikidot.com/spell:vampiric-touch"
+  },
+  {
+    "name": "Water Breathing",
+    "url": "http://dnd2024.wikidot.com/spell:water-breathing"
+  },
+  {
+    "name": "Water Walk",
+    "url": "http://dnd2024.wikidot.com/spell:water-walk"
+  },
+  {
+    "name": "Wind Wall",
+    "url": "http://dnd2024.wikidot.com/spell:wind-wall"
+  },
+  {
+    "name": "Arcane Eye",
+    "url": "http://dnd2024.wikidot.com/spell:arcane-eye"
+  },
+  {
+    "name": "Aura of Life",
+    "url": "http://dnd2024.wikidot.com/spell:aura-of-life"
+  },
+  {
+    "name": "Aura of Purity",
+    "url": "http://dnd2024.wikidot.com/spell:aura-of-purity"
+  },
+  {
+    "name": "Backlash",
+    "url": "http://dnd2024.wikidot.com/spell:backlash"
+  },
+  {
+    "name": "Banishment",
+    "url": "http://dnd2024.wikidot.com/spell:banishment"
+  },
+  {
+    "name": "Blight",
+    "url": "http://dnd2024.wikidot.com/spell:blight"
+  },
+  {
+    "name": "Charm Monster",
+    "url": "http://dnd2024.wikidot.com/spell:charm-monster"
+  },
+  {
+    "name": "Compulsion",
+    "url": "http://dnd2024.wikidot.com/spell:compulsion"
+  },
+  {
+    "name": "Confusion",
+    "url": "http://dnd2024.wikidot.com/spell:confusion"
+  },
+  {
+    "name": "Conjure Minor Elementals",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-minor-elementals"
+  },
+  {
+    "name": "Conjure Woodland Beings",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-woodland-beings"
+  },
+  {
+    "name": "Control Water",
+    "url": "http://dnd2024.wikidot.com/spell:control-water"
+  },
+  {
+    "name": "Death Ward",
+    "url": "http://dnd2024.wikidot.com/spell:death-ward"
+  },
+  {
+    "name": "Dimension Door",
+    "url": "http://dnd2024.wikidot.com/spell:dimension-door"
+  },
+  {
+    "name": "Divination",
+    "url": "http://dnd2024.wikidot.com/spell:divination"
+  },
+  {
+    "name": "Dominate Beast",
+    "url": "http://dnd2024.wikidot.com/spell:dominate-beast"
+  },
+  {
+    "name": "Doomtide",
+    "url": "http://dnd2024.wikidot.com/spell:doomtide"
+  },
+  {
+    "name": "Evard's Black Tentacles",
+    "url": "http://dnd2024.wikidot.com/spell:evard-s-black-tentacles"
+  },
+  {
+    "name": "Fabricate",
+    "url": "http://dnd2024.wikidot.com/spell:fabricate"
+  },
+  {
+    "name": "Fire Shield",
+    "url": "http://dnd2024.wikidot.com/spell:fire-shield"
+  },
+  {
+    "name": "Fount of Moonlight",
+    "url": "http://dnd2024.wikidot.com/spell:fount-of-moonlight"
+  },
+  {
+    "name": "Freedom of Movement",
+    "url": "http://dnd2024.wikidot.com/spell:freedom-of-movement"
+  },
+  {
+    "name": "Giant Insect",
+    "url": "http://dnd2024.wikidot.com/spell:giant-insect"
+  },
+  {
+    "name": "Grasping Vine",
+    "url": "http://dnd2024.wikidot.com/spell:grasping-vine"
+  },
+  {
+    "name": "Greater Invisibility",
+    "url": "http://dnd2024.wikidot.com/spell:greater-invisibility"
+  },
+  {
+    "name": "Guardian of Faith",
+    "url": "http://dnd2024.wikidot.com/spell:guardian-of-faith"
+  },
+  {
+    "name": "Hallucinatory Terrain",
+    "url": "http://dnd2024.wikidot.com/spell:hallucinatory-terrain"
+  },
+  {
+    "name": "Ice Storm",
+    "url": "http://dnd2024.wikidot.com/spell:ice-storm"
+  },
+  {
+    "name": "Leomund's Secret Chest",
+    "url": "http://dnd2024.wikidot.com/spell:leomunds-secret-chest"
+  },
+  {
+    "name": "Locate Creature",
+    "url": "http://dnd2024.wikidot.com/spell:locate-creature"
+  },
+  {
+    "name": "Mordenkainen's Faithful Hound",
+    "url": "http://dnd2024.wikidot.com/spell:mordenkainen-s-faithful-hound"
+  },
+  {
+    "name": "Mordenkainen's Private Sanctum",
+    "url": "http://dnd2024.wikidot.com/spell:mordenkainen-s-private-sanctum"
+  },
+  {
+    "name": "Otiluke's Resilient Sphere",
+    "url": "http://dnd2024.wikidot.com/spell:otilukes-resilient-sphere"
+  },
+  {
+    "name": "Phantasmal Killer",
+    "url": "http://dnd2024.wikidot.com/spell:phantasmal-killer"
+  },
+  {
+    "name": "Polymorph",
+    "url": "http://dnd2024.wikidot.com/spell:polymorph"
+  },
+  {
+    "name": "Spellfire Storm",
+    "url": "http://dnd2024.wikidot.com/spell:spellfire-storm"
+  },
+  {
+    "name": "Staggering Smite",
+    "url": "http://dnd2024.wikidot.com/spell:staggering-smite"
+  },
+  {
+    "name": "Sticks to Snakes",
+    "url": "http://dnd2024.wikidot.com/spell:sticks-to-snakes"
+  },
+  {
+    "name": "Stone Shape",
+    "url": "http://dnd2024.wikidot.com/spell:stone-shape"
+  },
+  {
+    "name": "Stoneskin",
+    "url": "http://dnd2024.wikidot.com/spell:stoneskin"
+  },
+  {
+    "name": "Summon Aberration",
+    "url": "http://dnd2024.wikidot.com/spell:summon-aberration"
+  },
+  {
+    "name": "Summon Construct",
+    "url": "http://dnd2024.wikidot.com/spell:summon-construct"
+  },
+  {
+    "name": "Summon Elemental",
+    "url": "http://dnd2024.wikidot.com/spell:summon-elemental"
+  },
+  {
+    "name": "Vitriolic Sphere",
+    "url": "http://dnd2024.wikidot.com/spell:vitriolic-sphere"
+  },
+  {
+    "name": "Wall of Fire",
+    "url": "http://dnd2024.wikidot.com/spell:wall-of-fire"
+  },
+  {
+    "name": "Alustriel's Mooncloak",
+    "url": "http://dnd2024.wikidot.com/spell:alustriel-s-mooncloak"
+  },
+  {
+    "name": "Animate Objects",
+    "url": "http://dnd2024.wikidot.com/spell:animate-objects"
+  },
+  {
+    "name": "Antilife Shell",
+    "url": "http://dnd2024.wikidot.com/spell:antilife-shell"
+  },
+  {
+    "name": "Awaken",
+    "url": "http://dnd2024.wikidot.com/spell:awaken"
+  },
+  {
+    "name": "Banishing Smite",
+    "url": "http://dnd2024.wikidot.com/spell:banishing-smite"
+  },
+  {
+    "name": "Bigby's Hand",
+    "url": "http://dnd2024.wikidot.com/spell:bigby-s-hand"
+  },
+  {
+    "name": "Circle Of Power",
+    "url": "http://dnd2024.wikidot.com/spell:circle-of-power"
+  },
+  {
+    "name": "Cloudkill",
+    "url": "http://dnd2024.wikidot.com/spell:cloudkill"
+  },
+  {
+    "name": "Commune",
+    "url": "http://dnd2024.wikidot.com/spell:commune"
+  },
+  {
+    "name": "Commune With Nature",
+    "url": "http://dnd2024.wikidot.com/spell:commune-with-nature"
+  },
+  {
+    "name": "Cone Of Cold",
+    "url": "http://dnd2024.wikidot.com/spell:cone-of-cold"
+  },
+  {
+    "name": "Conjure Elemental",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-elemental"
+  },
+  {
+    "name": "Conjure Volley",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-volley"
+  },
+  {
+    "name": "Contact Other Plane",
+    "url": "http://dnd2024.wikidot.com/spell:contact-other-plane"
+  },
+  {
+    "name": "Contagion",
+    "url": "http://dnd2024.wikidot.com/spell:contagion"
+  },
+  {
+    "name": "Creation",
+    "url": "http://dnd2024.wikidot.com/spell:creation"
+  },
+  {
+    "name": "Destructive Wave",
+    "url": "http://dnd2024.wikidot.com/spell:destructive-wave"
+  },
+  {
+    "name": "Dispel Evil and Good",
+    "url": "http://dnd2024.wikidot.com/spell:dispel-evil-and-good"
+  },
+  {
+    "name": "Dominate Person",
+    "url": "http://dnd2024.wikidot.com/spell:dominate-person"
+  },
+  {
+    "name": "Dream",
+    "url": "http://dnd2024.wikidot.com/spell:dream"
+  },
+  {
+    "name": "Flame Strike",
+    "url": "http://dnd2024.wikidot.com/spell:flame-strike"
+  },
+  {
+    "name": "Geas",
+    "url": "http://dnd2024.wikidot.com/spell:geas"
+  },
+  {
+    "name": "Greater Restoration",
+    "url": "http://dnd2024.wikidot.com/spell:greater-restoration"
+  },
+  {
+    "name": "Hallow",
+    "url": "http://dnd2024.wikidot.com/spell:hallow"
+  },
+  {
+    "name": "Hold Monster",
+    "url": "http://dnd2024.wikidot.com/spell:hold-monster"
+  },
+  {
+    "name": "Insect Plague",
+    "url": "http://dnd2024.wikidot.com/spell:insect-plague"
+  },
+  {
+    "name": "Jallarzi's Storm of Radiance",
+    "url": "http://dnd2024.wikidot.com/spell:jallarzi-s-storm-of-radiance"
+  },
+  {
+    "name": "Legend Lore",
+    "url": "http://dnd2024.wikidot.com/spell:legend-lore"
+  },
+  {
+    "name": "Mass Cure Wounds",
+    "url": "http://dnd2024.wikidot.com/spell:mass-cure-wounds"
+  },
+  {
+    "name": "Mislead",
+    "url": "http://dnd2024.wikidot.com/spell:mislead"
+  },
+  {
+    "name": "Modify Memory",
+    "url": "http://dnd2024.wikidot.com/spell:modify-memory"
+  },
+  {
+    "name": "Passwall",
+    "url": "http://dnd2024.wikidot.com/spell:passwall"
+  },
+  {
+    "name": "Planar Binding",
+    "url": "http://dnd2024.wikidot.com/spell:planar-binding"
+  },
+  {
+    "name": "Raise Dead",
+    "url": "http://dnd2024.wikidot.com/spell:raise-dead"
+  },
+  {
+    "name": "Rary's Telepathic Bond",
+    "url": "http://dnd2024.wikidot.com/spell:rary-s-telepathic-bond"
+  },
+  {
+    "name": "Reincarnate",
+    "url": "http://dnd2024.wikidot.com/spell:reincarnate"
+  },
+  {
+    "name": "Scrying",
+    "url": "http://dnd2024.wikidot.com/spell:scrying"
+  },
+  {
+    "name": "Seeming",
+    "url": "http://dnd2024.wikidot.com/spell:seeming"
+  },
+  {
+    "name": "Songal's Elemental Suffusion",
+    "url": "http://dnd2024.wikidot.com/spell:songal-s-elemental-suffusion"
+  },
+  {
+    "name": "Steel Wind Strike",
+    "url": "http://dnd2024.wikidot.com/spell:steel-wind-strike"
+  },
+  {
+    "name": "Summon Celestial",
+    "url": "http://dnd2024.wikidot.com/spell:summon-celestial"
+  },
+  {
+    "name": "Summon Dragon",
+    "url": "http://dnd2024.wikidot.com/spell:summon-dragon"
+  },
+  {
+    "name": "Swift Quiver",
+    "url": "http://dnd2024.wikidot.com/spell:swift-quiver"
+  },
+  {
+    "name": "Synaptic Static",
+    "url": "http://dnd2024.wikidot.com/spell:synaptic-static"
+  },
+  {
+    "name": "Telekinesis",
+    "url": "http://dnd2024.wikidot.com/spell:telekinesis"
+  },
+  {
+    "name": "Teleportation Circle",
+    "url": "http://dnd2024.wikidot.com/spell:teleportation-circle"
+  },
+  {
+    "name": "Tree Stride",
+    "url": "http://dnd2024.wikidot.com/spell:tree-stride"
+  },
+  {
+    "name": "Wall of Force",
+    "url": "http://dnd2024.wikidot.com/spell:wall-of-force"
+  },
+  {
+    "name": "Wall of Stone",
+    "url": "http://dnd2024.wikidot.com/spell:wall-of-stone"
+  },
+  {
+    "name": "Yolande's Regal Presence",
+    "url": "http://dnd2024.wikidot.com/spell:yolande-s-regal-presence"
+  },
+  {
+    "name": "Arcane Gate",
+    "url": "http://dnd2024.wikidot.com/spell:arcane-gate"
+  },
+  {
+    "name": "Blade Barrier",
+    "url": "http://dnd2024.wikidot.com/spell:blade-barrier"
+  },
+  {
+    "name": "Chain Lightning",
+    "url": "http://dnd2024.wikidot.com/spell:chain-lightning"
+  },
+  {
+    "name": "Circle Of Death",
+    "url": "http://dnd2024.wikidot.com/spell:circle-of-death"
+  },
+  {
+    "name": "Conjure Fey",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-fey"
+  },
+  {
+    "name": "Contingency",
+    "url": "http://dnd2024.wikidot.com/spell:contingency"
+  },
+  {
+    "name": "Create Undead",
+    "url": "http://dnd2024.wikidot.com/spell:create-undead"
+  },
+  {
+    "name": "Dirge",
+    "url": "http://dnd2024.wikidot.com/spell:dirge"
+  },
+  {
+    "name": "Disintegrate",
+    "url": "http://dnd2024.wikidot.com/spell:disintegrate"
+  },
+  {
+    "name": "Drawmij's Instant Summons",
+    "url": "http://dnd2024.wikidot.com/spell:drawmij-s-instant-summons"
+  },
+  {
+    "name": "Elminster's Effulgent Spheres",
+    "url": "http://dnd2024.wikidot.com/spell:elminster-s-effulgent-spheres"
+  },
+  {
+    "name": "Eyebite",
+    "url": "http://dnd2024.wikidot.com/spell:eyebite"
+  },
+  {
+    "name": "Find the Path",
+    "url": "http://dnd2024.wikidot.com/spell:find-the-path"
+  },
+  {
+    "name": "Flesh to Stone",
+    "url": "http://dnd2024.wikidot.com/spell:flesh-to-stone"
+  },
+  {
+    "name": "Forbiddance",
+    "url": "http://dnd2024.wikidot.com/spell:forbiddance"
+  },
+  {
+    "name": "Globe of Invulnerability",
+    "url": "http://dnd2024.wikidot.com/spell:globe-of-invulnerability"
+  },
+  {
+    "name": "Guards and Wards",
+    "url": "http://dnd2024.wikidot.com/spell:guards-and-wards"
+  },
+  {
+    "name": "Harm",
+    "url": "http://dnd2024.wikidot.com/spell:harm"
+  },
+  {
+    "name": "Heal",
+    "url": "http://dnd2024.wikidot.com/spell:heal"
+  },
+  {
+    "name": "Heroes' Feast",
+    "url": "http://dnd2024.wikidot.com/spell:heroes-feast"
+  },
+  {
+    "name": "Leomund's Lamentable Belaborment",
+    "url": "http://dnd2024.wikidot.com/spell:leomund-s-lamentable-belaborment"
+  },
+  {
+    "name": "Magic Jar",
+    "url": "http://dnd2024.wikidot.com/spell:magic-jar"
+  },
+  {
+    "name": "Mass Suggestion",
+    "url": "http://dnd2024.wikidot.com/spell:mass-suggestion"
+  },
+  {
+    "name": "Move Earth",
+    "url": "http://dnd2024.wikidot.com/spell:move-earth"
+  },
+  {
+    "name": "Otiluke's Freezing Sphere",
+    "url": "http://dnd2024.wikidot.com/spell:otiluke-s-freezing-sphere"
+  },
+  {
+    "name": "Otto's Irresistible Dance",
+    "url": "http://dnd2024.wikidot.com/spell:otto-s-irresistible-dance"
+  },
+  {
+    "name": "Planar Ally",
+    "url": "http://dnd2024.wikidot.com/spell:planar-ally"
+  },
+  {
+    "name": "Programmed Illusion",
+    "url": "http://dnd2024.wikidot.com/spell:programmed-illusion"
+  },
+  {
+    "name": "Summon Fiend",
+    "url": "http://dnd2024.wikidot.com/spell:summon-fiend"
+  },
+  {
+    "name": "Sunbeam",
+    "url": "http://dnd2024.wikidot.com/spell:sunbeam"
+  },
+  {
+    "name": "Tasha's Bubbling Cauldron",
+    "url": "http://dnd2024.wikidot.com/spell:tasha-s-bubbling-cauldron"
+  },
+  {
+    "name": "Transport via Plants",
+    "url": "http://dnd2024.wikidot.com/spell:transport-via-plants"
+  },
+  {
+    "name": "True Seeing",
+    "url": "http://dnd2024.wikidot.com/spell:true-seeing"
+  },
+  {
+    "name": "Wall of Ice",
+    "url": "http://dnd2024.wikidot.com/spell:wall-of-ice"
+  },
+  {
+    "name": "Wall of Thorns",
+    "url": "http://dnd2024.wikidot.com/spell:wall-of-thorns"
+  },
+  {
+    "name": "Wind Walk",
+    "url": "http://dnd2024.wikidot.com/spell:wind-walk"
+  },
+  {
+    "name": "Word of Recall",
+    "url": "http://dnd2024.wikidot.com/spell:word-of-recall"
+  },
+  {
+    "name": "Conjure Celestial",
+    "url": "http://dnd2024.wikidot.com/spell:conjure-celestial"
+  },
+  {
+    "name": "Delayed Blast Fireball",
+    "url": "http://dnd2024.wikidot.com/spell:delayed-blast-fireball"
+  },
+  {
+    "name": "Divine Word",
+    "url": "http://dnd2024.wikidot.com/spell:divine-word"
+  },
+  {
+    "name": "Etherealness",
+    "url": "http://dnd2024.wikidot.com/spell:etherealness"
+  },
+  {
+    "name": "Finger of Death",
+    "url": "http://dnd2024.wikidot.com/spell:finger-of-death"
+  },
+  {
+    "name": "Fire Storm",
+    "url": "http://dnd2024.wikidot.com/spell:fire-storm"
+  },
+  {
+    "name": "Forcecage",
+    "url": "http://dnd2024.wikidot.com/spell:forcecage"
+  },
+  {
+    "name": "Mirage Arcane",
+    "url": "http://dnd2024.wikidot.com/spell:mirage-arcane"
+  },
+  {
+    "name": "Mordenkainen's Magnificent Mansion",
+    "url": "http://dnd2024.wikidot.com/spell:mordenkainen-s-magnificent-mansion"
+  },
+  {
+    "name": "Mordenkainen's Sword",
+    "url": "http://dnd2024.wikidot.com/spell:mordenkainen-s-sword"
+  },
+  {
+    "name": "Plane Shift",
+    "url": "http://dnd2024.wikidot.com/spell:plane-shift"
+  },
+  {
+    "name": "Power Word Fortify",
+    "url": "http://dnd2024.wikidot.com/spell:power-word-fortify"
+  },
+  {
+    "name": "Prismatic Spray",
+    "url": "http://dnd2024.wikidot.com/spell:prismatic-spray"
+  },
+  {
+    "name": "Project Image",
+    "url": "http://dnd2024.wikidot.com/spell:project-image"
+  },
+  {
+    "name": "Regenerate",
+    "url": "http://dnd2024.wikidot.com/spell:regenerate"
+  },
+  {
+    "name": "Resurrection",
+    "url": "http://dnd2024.wikidot.com/spell:resurrection"
+  },
+  {
+    "name": "Reverse Gravity",
+    "url": "http://dnd2024.wikidot.com/spell:reverse-gravity"
+  },
+  {
+    "name": "Sequester",
+    "url": "http://dnd2024.wikidot.com/spell:sequester"
+  },
+  {
+    "name": "Simbul's Synostodweomer",
+    "url": "http://dnd2024.wikidot.com/spell:simbul-s-synostodweomer"
+  },
+  {
+    "name": "Simulacrum",
+    "url": "http://dnd2024.wikidot.com/spell:simulacrum"
+  },
+  {
+    "name": "Symbol",
+    "url": "http://dnd2024.wikidot.com/spell:symbol"
+  },
+  {
+    "name": "Teleport",
+    "url": "http://dnd2024.wikidot.com/spell:teleport"
+  },
+  {
+    "name": "Void Star",
+    "url": "http://dnd2024.wikidot.com/spell:void-star"
+  },
+  {
+    "name": "Animal Shapes",
+    "url": "http://dnd2024.wikidot.com/spell:animal-shapes"
+  },
+  {
+    "name": "Antimagic Field",
+    "url": "http://dnd2024.wikidot.com/spell:antimagic-field"
+  },
+  {
+    "name": "Antipathy/Sympathy",
+    "url": "http://dnd2024.wikidot.com/spell:antipathy-sympathy"
+  },
+  {
+    "name": "Befuddlement",
+    "url": "http://dnd2024.wikidot.com/spell:befuddlement"
+  },
+  {
+    "name": "Clone",
+    "url": "http://dnd2024.wikidot.com/spell:clone"
+  },
+  {
+    "name": "Control Weather",
+    "url": "http://dnd2024.wikidot.com/spell:control-weather"
+  },
+  {
+    "name": "Demiplane",
+    "url": "http://dnd2024.wikidot.com/spell:demiplane"
+  },
+  {
+    "name": "Dominate Monster",
+    "url": "http://dnd2024.wikidot.com/spell:dominate-monster"
+  },
+  {
+    "name": "Earthquake",
+    "url": "http://dnd2024.wikidot.com/spell:earthquake"
+  },
+  {
+    "name": "Glibness",
+    "url": "http://dnd2024.wikidot.com/spell:glibness"
+  },
+  {
+    "name": "Holy Aura",
+    "url": "http://dnd2024.wikidot.com/spell:holy-aura"
+  },
+  {
+    "name": "Holy Star of Mystra",
+    "url": "http://dnd2024.wikidot.com/spell:holy-star-of-mystra"
+  },
+  {
+    "name": "Incendiary Cloud",
+    "url": "http://dnd2024.wikidot.com/spell:incendiary-cloud"
+  },
+  {
+    "name": "Maze",
+    "url": "http://dnd2024.wikidot.com/spell:maze"
+  },
+  {
+    "name": "Mind Blank",
+    "url": "http://dnd2024.wikidot.com/spell:mind-blank"
+  },
+  {
+    "name": "Power Word Stun",
+    "url": "http://dnd2024.wikidot.com/spell:power-word-stun"
+  },
+  {
+    "name": "Sunburst",
+    "url": "http://dnd2024.wikidot.com/spell:sunburst"
+  },
+  {
+    "name": "Telepathy",
+    "url": "http://dnd2024.wikidot.com/spell:telepathy"
+  },
+  {
+    "name": "Tsunami",
+    "url": "http://dnd2024.wikidot.com/spell:tsunami"
+  },
+  {
+    "name": "Astral Projection",
+    "url": "http://dnd2024.wikidot.com/spell:astral-projection"
+  },
+  {
+    "name": "Blade Of Disaster",
+    "url": "http://dnd2024.wikidot.com/spell:blade-of-disaster"
+  },
+  {
+    "name": "Foresight",
+    "url": "http://dnd2024.wikidot.com/spell:foresight"
+  },
+  {
+    "name": "Gate",
+    "url": "http://dnd2024.wikidot.com/spell:gate"
+  },
+  {
+    "name": "Imprisonment",
+    "url": "http://dnd2024.wikidot.com/spell:imprisonment"
+  },
+  {
+    "name": "Mass Heal",
+    "url": "http://dnd2024.wikidot.com/spell:mass-heal"
+  },
+  {
+    "name": "Meteor Swarm",
+    "url": "http://dnd2024.wikidot.com/spell:meteor-swarm"
+  },
+  {
+    "name": "Power Word Heal",
+    "url": "http://dnd2024.wikidot.com/spell:power-word-heal"
+  },
+  {
+    "name": "Power Word Kill",
+    "url": "http://dnd2024.wikidot.com/spell:power-word-kill"
+  },
+  {
+    "name": "Prismatic Wall",
+    "url": "http://dnd2024.wikidot.com/spell:prismatic-wall"
+  },
+  {
+    "name": "Shapechange",
+    "url": "http://dnd2024.wikidot.com/spell:shapechange"
+  },
+  {
+    "name": "Storm of Vengeance",
+    "url": "http://dnd2024.wikidot.com/spell:storm-of-vengeance"
+  },
+  {
+    "name": "Time Stop",
+    "url": "http://dnd2024.wikidot.com/spell:time-stop"
+  },
+  {
+    "name": "True Polymorph",
+    "url": "http://dnd2024.wikidot.com/spell:true-polymorph"
+  },
+  {
+    "name": "True Resurrection",
+    "url": "http://dnd2024.wikidot.com/spell:true-resurrection"
+  },
+  {
+    "name": "Weird",
+    "url": "http://dnd2024.wikidot.com/spell:weird"
+  },
+  {
+    "name": "Wish",
+    "url": "http://dnd2024.wikidot.com/spell:wish"
+  }
+]

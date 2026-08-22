@@ -34,11 +34,11 @@ export default function Character(){
         <div className="left-top">
           <h1 className="char-name">{isEditing ? <input value={form.name||''} onChange={e=>setForm(f=>({...f, name:e.target.value}))} /> : (char.name || 'Unnamed')}</h1>
           <div className="submeta">
-            <span>{isEditing ? <input value={form.race||''} onChange={e=>setForm(f=>({...f, race:e.target.value}))} /> : (char.race || '—')}</span>
-            <span>{isEditing ? <input value={form.subrace||''} onChange={e=>setForm(f=>({...f, subrace:e.target.value}))} /> : (char.subrace || '')}</span>
-            <span>{isEditing ? <input value={form.background||''} onChange={e=>setForm(f=>({...f, background:e.target.value}))} /> : (char.background || '')}</span>
+            <span>{isEditing ? <input value={form.race||''} onChange={e=>setForm(f=>({...f, race:e.target.value}))} /> : (char.race || 'Unknown Race')}</span>
+            <span>{isEditing ? <input value={form.subrace||''} onChange={e=>setForm(f=>({...f, subrace:e.target.value}))} /> : ('- ' + char.subrace || '')}</span>
+            <span>{isEditing ? <input value={form.background||''} onChange={e=>setForm(f=>({...f, background:e.target.value}))} /> : ('- ' + char.background || '')}</span>
           </div>
-          <div className="small-meta">Player: {isEditing ? <input value={form.player||''} onChange={e=>setForm(f=>({...f, player:e.target.value}))} /> : (char.player || '—')} • Alignment: {isEditing ? <input value={form.alignment||''} onChange={e=>setForm(f=>({...f, alignment:e.target.value}))} /> : (char.alignment || '—')}</div>
+          <div className="small-meta">Player: {isEditing ? <input value={form.player||''} onChange={e=>setForm(f=>({...f, player:e.target.value}))} /> : (char.player || 'Unknown Player')} • Alignment: {isEditing ? <input value={form.alignment||''} onChange={e=>setForm(f=>({...f, alignment:e.target.value}))} /> : (char.alignment || 'Unknown Alignment')}</div>
         </div>
 
         <div className="right-top">
@@ -79,7 +79,6 @@ export default function Character(){
                     <input placeholder="Skill" value={s.name||''} onChange={e=>setForm(f=>{ const arr = [...(f.skillProficiencies||[])]; arr[i]={...(arr[i]||{}), name:e.target.value}; return {...f, skillProficiencies:arr} })} />
                     <select value={s.level||'proficient'} onChange={e=>setForm(f=>{ const arr = [...(f.skillProficiencies||[])]; arr[i]={...(arr[i]||{}), level:e.target.value}; return {...f, skillProficiencies:arr} })}>
                       <option value="none">none</option>
-                      <option value="half">half</option>
                       <option value="proficient">proficient</option>
                       <option value="expert">expert</option>
                     </select>
