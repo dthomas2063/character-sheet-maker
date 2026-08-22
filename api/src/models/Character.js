@@ -91,6 +91,8 @@ const CharacterSchema = new Schema({
   proficiencies: [String],
   inventory: [String],
   notes: { type: String }
+  ,
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true })
 
 // Virtuals: ability modifiers and computed level
