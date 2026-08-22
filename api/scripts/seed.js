@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import Character from '../src/models/Character.js'
+import User from '../src/models/User.js'
 
 dotenv.config()
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/character-sheet'
@@ -103,9 +104,20 @@ async function run(){
   ]
 
   try{
+    // ensure demo user exists
+    let demo = await User.findOne({ email: 'dev@example.com' })
+    if(!demo){
+      demo = new User({ email: 'dev@example.com', password: 'password', name: 'Dev' })
+      await demo.save()
+      console.log('Created demo user: dev@example.com / password')
+    }else{
+      console.log('Demo user already exists: dev@example.com')
+    }
+
     await Character.deleteMany({})
-    const created = await Character.insertMany(samples)
-    console.log(`Inserted ${created.length} characters`)
+    const withOwner = samples.map(s => ({ ...s, owner: demo._id }))
+    const created = await Character.insertMany(withOwner)
+    console.log(`Inserted ${created.length} characters and assigned to demo user`)
   }catch(err){
     console.error('Seed error', err)
   }finally{
