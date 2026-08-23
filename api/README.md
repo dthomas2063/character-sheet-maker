@@ -2,6 +2,8 @@
 
 This is a minimal Express + Mongoose API for the Character Sheet Maker.
 
+Requires Node.js 24.
+
 Quick start:
 
 ```bash
