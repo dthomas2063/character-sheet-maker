@@ -9,7 +9,7 @@ import './dice-popup.css'
 function nameFor(person){ return person?.name || person?.email || 'Unknown player' }
 function idFor(person){ return String(person?._id || person) }
 
-export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared }){
+export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared, onPresenceUpdated }){
   const [messages, setMessages] = useState([])
   const [recipientId, setRecipientId] = useState('')
   const [draft, setDraft] = useState('')
@@ -20,10 +20,15 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
   const endRef = useRef(null)
   const rollComposerRef = useRef(null)
 
-  const recipients = useMemo(()=>[
-    game.owner,
-    ...game.members.map(member => member.user)
-  ].filter(person => idFor(person) !== idFor(user)), [game, user])
+  const recipients = useMemo(()=>{
+    const seen = new Set()
+    return [game.owner, ...game.members.map(member => member.user)].filter(person => {
+      const personId = idFor(person)
+      if(personId === idFor(user) || seen.has(personId)) return false
+      seen.add(personId)
+      return true
+    })
+  }, [game, user])
 
   useEffect(()=>{
     let active = true
@@ -34,21 +39,35 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     })
 
     const token = localStorage.getItem('authToken')
-    const socket = io({ auth: { token } })
+    const socket = io({
+      auth: { token },
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      timeout: 20000
+    })
     socketRef.current = socket
-    socket.on('connect', ()=>{
+    function joinGame(){
       socket.emit('joinGame', { gameId: game._id }, result=>{
         if(result?.error) setStatus(result.error)
+        else setStatus(null)
       })
-    })
-    socket.on('chatMessage', message=>setMessages(current => [...current, message]))
+    }
+    socket.on('connect', joinGame)
+    socket.on('reconnect', joinGame)
+    socket.on('chatMessage', message=>setMessages(current => current.some(existing => existing._id && existing._id === message._id) ? current : [...current, message]))
     socket.on('monsterUpdated', onMonsterUpdated)
     socket.on('initiativeUpdated', onInitiativeUpdated)
     socket.on('combatCleared', onCombatCleared)
+      socket.on('playerPresence', onPresenceUpdated)
+      socket.on('playerPresenceSnapshot', ({ players })=>players.forEach(userId => onPresenceUpdated({ userId, online: true })))
     socket.on('connect_error', ()=>setStatus('Chat connection unavailable.'))
+    socket.on('disconnect', ()=>setStatus('Chat disconnected. Reconnecting...'))
 
     return ()=>{
       active = false
+      socket.emit('leaveGame', { gameId: game._id })
       socket.disconnect()
       socketRef.current = null
     }
@@ -106,7 +125,7 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     <div className="game-chat-header"><div><p className="eyebrow">Game Chat</p></div><span>{messages.length} messages</span></div>
     <div className="chat-messages" aria-live="polite">
       {messages.length === 0 && <p className="chat-empty">No messages yet. Start the conversation.</p>}
-      {messages.map(message => message.type === 'event' ? <p className="chat-event" key={message._id || `${message.createdAt}-${message.content}`}>{message.content}</p> : <article className={`chat-message ${idFor(message.sender) === idFor(user) ? 'own-message' : ''}`} key={message._id || `${message.createdAt}-${message.content}`}>
+      {messages.map((message, messageIndex) => message.type === 'event' ? <p className="chat-event" key={`event-${message._id || messageIndex}`}>{message.content}</p> : <article className={`chat-message ${idFor(message.sender) === idFor(user) ? 'own-message' : ''}`} key={`message-${message._id || messageIndex}`}>
         <div className="chat-message-meta"><strong>{message.type === 'event' ? 'Game event' : nameFor(message.sender)}</strong>{message.recipient && <span>whisper</span>}<time>{new Date(message.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</time></div>
         <p>{message.content}</p>
       </article>)}
@@ -116,7 +135,7 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     <div className="chat-compose">
       <select value={recipientId} onChange={e=>setRecipientId(e.target.value)} aria-label="Message recipient">
         <option value="">Whole table</option>
-        {recipients.map(person => <option key={idFor(person)} value={idFor(person)}>Whisper to {nameFor(person)}</option>)}
+        {recipients.map((person, index) => <option key={`recipient-${idFor(person)}-${index}`} value={idFor(person)}>Whisper to {nameFor(person)}</option>)}
       </select>
       <form className="chat-input-row" onSubmit={sendMessage}><input value={draft} onChange={e=>setDraft(e.target.value)} placeholder="Write a message..." maxLength="2000" /><button type="submit">Send</button></form>
       <div className="dice-composer" ref={rollComposerRef}>

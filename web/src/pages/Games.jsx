@@ -126,7 +126,7 @@ export default function Games({ user }){
       <section className="game-section">
         <h2>Your games</h2>
         {games.length === 0 ? <p className="list-message">No games yet. Start one above or join with a code.</p> : <div className="game-grid">
-          {games.map(game => <article className="game-card" key={game._id}>
+          {games.map((game, index) => <article className="game-card" key={`game-${game._id}-${index}`}>
             <div className="game-card-heading"><h3><Link to={`/games/${game._id}`}>{game.name}</Link></h3><span>{game.members.length} players</span></div>
             <p>{game.description || 'No description yet.'}</p>
             <span className="game-meta">Join code: <strong>{game.joinCode}</strong></span>

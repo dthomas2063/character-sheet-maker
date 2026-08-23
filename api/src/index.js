@@ -14,7 +14,12 @@ dotenv.config()
 
 const app = express()
 const server = createServer(app)
-const io = new Server(server, { cors: { origin: true, credentials: true } })
+const io = new Server(server, {
+  cors: { origin: true, credentials: true },
+  pingInterval: 25000,
+  pingTimeout: 60000,
+  connectionStateRecovery: { maxDisconnectionDuration: 120000 }
+})
 setupSocket(io)
 app.set('io', io)
 const PORT = process.env.PORT || 4000

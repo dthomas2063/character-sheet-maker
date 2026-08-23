@@ -34,6 +34,10 @@ function emitToUser(gameId, userId, event, payload){
   for(const socket of sockets) socket.emit(event, payload)
 }
 
+function broadcastPresence(io, gameId, userId, online){
+  io.to(roomName(gameId)).emit('playerPresence', { userId, online })
+}
+
 export function setupSocket(io){
   io.use((socket, next)=>{
     try{
@@ -55,8 +59,23 @@ export function setupSocket(io){
         socket.join(roomName(gameId))
         socket.joinedGames.add(String(gameId))
         addSocket(String(gameId), socket.userId, socket)
+        socket.to(roomName(gameId)).emit('playerPresence', { userId: socket.userId, online: true })
+        socket.emit('playerPresenceSnapshot', { players: Array.from(gameSockets.get(String(gameId))?.keys() || []) })
         acknowledge({ ok: true })
       }catch(err){ acknowledge({ error: err.message }) }
+    })
+
+    socket.on('leaveGame', ({ gameId } = {})=>{
+      const normalizedGameId = String(gameId)
+      if(!socket.joinedGames.has(normalizedGameId)) return
+      socket.leave(roomName(normalizedGameId))
+      socket.joinedGames.delete(normalizedGameId)
+      const users = gameSockets.get(normalizedGameId)
+      const sockets = users?.get(socket.userId)
+      sockets?.delete(socket)
+      if(sockets?.size === 0) users?.delete(socket.userId)
+      if(users?.size === 0) gameSockets.delete(normalizedGameId)
+      if(!users?.has(socket.userId)) broadcastPresence(io, normalizedGameId, socket.userId, false)
     })
 
     socket.on('sendMessage', async ({ gameId, content, recipientId = null } = {}, acknowledge = ()=>{})=>{
@@ -116,7 +135,14 @@ export function setupSocket(io){
       }catch(err){ acknowledge({ error: err.message }) }
     })
 
-    socket.on('disconnect', ()=>removeSocket(socket))
+    socket.on('disconnect', ()=>{
+      for(const gameId of socket.joinedGames){
+        const users = gameSockets.get(gameId)
+        const sockets = users?.get(socket.userId)
+        if(sockets?.size === 1) broadcastPresence(io, gameId, socket.userId, false)
+      }
+      removeSocket(socket)
+    })
   })
 }
 

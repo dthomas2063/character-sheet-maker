@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import spellsData from '../data/spells_wikidot_full.json'
 import './spells.css'
 
@@ -21,6 +21,10 @@ export default function Spells({ initialClassFilter = 'all' }){
   const [levelFilter, setLevelFilter] = useState('all')
   const [schoolFilter, setSchoolFilter] = useState('all')
   const [classFilter, setClassFilter] = useState(initialClassFilter)
+
+  useEffect(()=>{
+    setClassFilter(initialClassFilter)
+  }, [initialClassFilter])
 
   const levels = useMemo(()=>{
     return Array.from(new Set(spellsData.map(s=>s.level).filter(s=>s!=null))).sort((a,b)=>a-b)

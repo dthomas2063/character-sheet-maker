@@ -4,6 +4,7 @@ import api from '../api/axios'
 import GameSidebar from './GameSidebar'
 import GameNavBar from './GameNavBar'
 import './game-table.css'
+import GamePresence from './GamePresence'
 
 export default function GameSettings({ user }){
   const { id } = useParams()
@@ -37,6 +38,7 @@ export default function GameSettings({ user }){
 
   return (
     <div className="game-layout">
+      <GamePresence gameId={id} />
       <GameSidebar gameName={game.name} gameId={id} />
       <section className="game-layout-content preferences-page game-settings-page">
         <GameNavBar gameName={game.name} dmName={game.owner?.name || game.owner?.email || 'Unknown'} />

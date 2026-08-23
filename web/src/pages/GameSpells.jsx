@@ -5,6 +5,7 @@ import Spells from './Spells'
 import GameSidebar from './GameSidebar'
 import GameNavBar from './GameNavBar'
 import './game-table.css'
+import GamePresence from './GamePresence'
 
 export default function GameSpells(){
   const { id } = useParams()
@@ -24,6 +25,7 @@ export default function GameSpells(){
 
   return (
     <div className="game-layout">
+      <GamePresence gameId={id} />
       <GameSidebar gameName={game.name} gameId={id} />
       <div className="game-layout-content">
         <GameNavBar gameName={game.name} dmName={game.owner?.name || game.owner?.email || 'Unknown'} />

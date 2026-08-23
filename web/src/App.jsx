@@ -8,7 +8,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Preferences from './pages/Preferences'
 import Games from './pages/Games'
-import GameTable from './pages/GameTable'
+import GameTableView from './pages/GameTableView'
 import GameSettings from './pages/GameSettings'
 import GamePlayers from './pages/GamePlayers'
 import GameSpells from './pages/GameSpells'
@@ -114,7 +114,7 @@ export default function App(){
           <Route path="/register" element={<Register onLogin={handleLogin}/>}/>
           <Route path="/preferences" element={<ProtectedRoute token={token}><Preferences theme={theme} onThemeChange={handleThemeChange}/></ProtectedRoute>}/>
           <Route path="/games" element={<ProtectedRoute token={token}><Games user={user}/></ProtectedRoute>}/>
-          <Route path="/games/:id" element={<ProtectedRoute token={token}><GameTable user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id" element={<ProtectedRoute token={token}><GameTableView user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/settings" element={<ProtectedRoute token={token}><GameSettings user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/players" element={<ProtectedRoute token={token}><GamePlayers user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/spells" element={<ProtectedRoute token={token}><GameSpells/></ProtectedRoute>}/>

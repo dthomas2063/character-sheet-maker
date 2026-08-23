@@ -222,6 +222,24 @@ export async function removeMonster(req, res){
   }
 }
 
+export async function setMonsterInitiative(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(String(game.owner) !== String(req.userId)) return forbidden(res)
+    const monster = game.monsters.id(req.params.monsterId)
+    if(!monster) return notFound(res)
+    const initiative = Number(req.body.initiative)
+    if(!Number.isInteger(initiative)) return res.status(400).json({ error: 'Initiative must be a whole number' })
+    monster.initiative = initiative
+    await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('monsterUpdated', { monsterId: monster._id, initiative: monster.initiative })
+    res.json({ initiative: monster.initiative })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
 export async function toggleMonsterDead(req, res){
   try{
     const game = await Game.findById(req.params.id)
@@ -242,7 +260,7 @@ export async function toggleMonsterDead(req, res){
       const event = await ChatMessage.create({
         game: game._id,
         type: 'event',
-        content: `${monster.name} was marked dead.`,
+        content: `${monster.name} dies.`,
         eventKey: 'monster.dead',
         eventData: { monsterId: monster._id }
       })
@@ -324,6 +342,33 @@ export async function rollPlayerInitiative(req, res){
     })
     req.app.get('io')?.to(`game:${game._id}`).emit('chatMessage', event.toObject())
     res.json({ roll: roll.dice[0].values[0], dexterityModifier, initiative })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export async function setPlayerInitiative(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(String(game.owner) !== String(req.userId)) return forbidden(res)
+    const member = game.members.find(item => String(item.user) === String(req.params.userId))
+    if(!member) return notFound(res)
+    const initiative = Number(req.body.initiative)
+    if(!Number.isInteger(initiative)) return res.status(400).json({ error: 'Initiative must be a whole number' })
+    const character = await Character.findById(member.character)
+    if(!character) return res.status(400).json({ error: 'Player does not have a character in this game' })
+    character.initiative = initiative
+    await character.save()
+    member.inCombat = true
+    await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('initiativeUpdated', {
+      userId: member.user,
+      characterId: character._id,
+      initiative,
+      inCombat: true
+    })
+    res.json({ initiative })
   }catch(err){
     res.status(400).json({ error: err.message })
   }
