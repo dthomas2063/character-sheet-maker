@@ -9,7 +9,7 @@ import './dice-popup.css'
 function nameFor(person){ return person?.name || person?.email || 'Unknown player' }
 function idFor(person){ return String(person?._id || person) }
 
-export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared, onPresenceUpdated }){
+export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared, onPresenceUpdated, onTurnUpdated }){
   const [messages, setMessages] = useState([])
   const [recipientId, setRecipientId] = useState('')
   const [draft, setDraft] = useState('')
@@ -60,6 +60,7 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     socket.on('monsterUpdated', onMonsterUpdated)
     socket.on('initiativeUpdated', onInitiativeUpdated)
     socket.on('combatCleared', onCombatCleared)
+    socket.on('turnUpdated', onTurnUpdated)
       socket.on('playerPresence', onPresenceUpdated)
       socket.on('playerPresenceSnapshot', ({ players })=>players.forEach(userId => onPresenceUpdated({ userId, online: true })))
     socket.on('connect_error', ()=>setStatus('Chat connection unavailable.'))

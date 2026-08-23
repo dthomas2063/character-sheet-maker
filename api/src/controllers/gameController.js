@@ -174,10 +174,12 @@ export async function addMonster(req, res){
     const name = String(req.body.name || '').trim()
     const initiative = Number(req.body.initiative)
     const maxHp = Number(req.body.maxHp)
-    if(!name || !Number.isFinite(initiative) || !Number.isFinite(maxHp) || maxHp < 1) return res.status(400).json({ error: 'Monster name, initiative, and positive max HP are required' })
-    game.monsters.push({ name, initiative, maxHp, currentHp: maxHp, hidden: req.body.hidden === true })
+    if(!name || !Number.isFinite(initiative) || !Number.isFinite(maxHp) || maxHp < 0) return res.status(400).json({ error: 'Monster name, initiative, and non-negative max HP are required' })
+    game.monsters.push({ name, initiative, maxHp, currentHp: maxHp === 0 ? 0 : maxHp, hidden: req.body.hidden === true })
     await game.save()
-    res.status(201).json(game.monsters[game.monsters.length - 1])
+    const monster = game.monsters[game.monsters.length - 1]
+    req.app.get('io')?.to(`game:${game._id}`).emit('monsterAdded', monster.toObject())
+    res.status(201).json(monster)
   }catch(err){
     res.status(400).json({ error: err.message })
   }
@@ -193,15 +195,18 @@ export async function adjustMonsterHp(req, res){
     const amount = Number(req.body.amount)
     const direction = Number(req.body.direction)
     if(!Number.isFinite(amount) || amount < 0 || ![1, -1].includes(direction)) return res.status(400).json({ error: 'Health amount must be positive' })
-    monster.currentHp = Math.max(0, Math.min(monster.maxHp, monster.currentHp + amount * direction))
+    monster.currentHp = monster.maxHp === 0
+      ? Math.max(0, monster.currentHp + amount * direction)
+      : Math.max(0, Math.min(monster.maxHp, monster.currentHp + amount * direction))
     await game.save()
     req.app.get('io')?.to(`game:${game._id}`).emit('monsterUpdated', {
       monsterId: monster._id,
       currentHp: monster.currentHp,
       maxHp: monster.maxHp,
-      dead: monster.dead
+      dead: monster.dead,
+      bloodied: monster.maxHp === 0 ? monster.bloodied : monster.currentHp < monster.maxHp / 2
     })
-    res.json({ currentHp: monster.currentHp, bloodied: monster.currentHp < monster.maxHp / 2 })
+    res.json({ currentHp: monster.currentHp, bloodied: monster.maxHp === 0 ? monster.bloodied : monster.currentHp < monster.maxHp / 2 })
   }catch(err){
     res.status(400).json({ error: err.message })
   }
@@ -216,6 +221,7 @@ export async function removeMonster(req, res){
     if(!monster) return notFound(res)
     monster.deleteOne()
     await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('monsterRemoved', { monsterId: req.params.monsterId })
     res.json({ ok: true })
   }catch(err){
     res.status(400).json({ error: err.message })
@@ -294,6 +300,21 @@ export async function toggleMonsterHidden(req, res){
   }
 }
 
+export async function toggleMonsterBloodied(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(String(game.owner) !== String(req.userId)) return forbidden(res)
+    const monster = game.monsters.id(req.params.monsterId)
+    if(!monster) return notFound(res)
+    if(monster.maxHp !== 0) return res.status(400).json({ error: 'Manual Bloodied status is only for damage-only monsters' })
+    monster.bloodied = !monster.bloodied
+    await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('monsterUpdated', { monsterId: monster._id, bloodied: monster.bloodied })
+    res.json(monster)
+  }catch(err){ res.status(400).json({ error: err.message }) }
+}
+
 export async function clearCombatTracker(req, res){
   try{
     const game = await Game.findById(req.params.id)
@@ -301,12 +322,33 @@ export async function clearCombatTracker(req, res){
     if(String(game.owner) !== String(req.userId)) return forbidden(res)
     game.members.forEach(member => { member.inCombat = false })
     game.monsters.forEach(monster => { monster.inCombat = false })
+    game.currentTurnKey = null
     await game.save()
     req.app.get('io')?.to(`game:${game._id}`).emit('combatCleared')
     res.json({ ok: true })
   }catch(err){
     res.status(400).json({ error: err.message })
   }
+}
+
+export async function advanceTurn(req, res){
+  try{
+    const game = await Game.findById(req.params.id).populate('members.character', 'initiative')
+    if(!game) return notFound(res)
+    if(String(game.owner) !== String(req.userId)) return forbidden(res)
+    const entries = [
+      ...game.members.filter(member => member.inCombat !== false).map(member => ({ key: `player:${member.user}`, initiative: member.character?.initiative ?? 0 })),
+      ...game.monsters.filter(monster => monster.inCombat !== false && !monster.dead).map(monster => ({ key: `monster:${monster._id}`, initiative: monster.initiative }))
+    ].sort((first, second) => second.initiative - first.initiative)
+    if(!entries.length){ game.currentTurnKey = null }
+    else {
+      const currentIndex = entries.findIndex(entry => entry.key === game.currentTurnKey)
+      game.currentTurnKey = entries[(currentIndex + 1) % entries.length].key
+    }
+    await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('turnUpdated', { currentTurnKey: game.currentTurnKey })
+    res.json({ currentTurnKey: game.currentTurnKey })
+  }catch(err){ res.status(400).json({ error: err.message }) }
 }
 
 export async function rollPlayerInitiative(req, res){

@@ -9,6 +9,7 @@ export default function GameSidebar({ gameName, gameId }){
     { to: `/games/${gameId}`, label: 'Game table', icon: 'T', end: true },
     { to: `/games/${gameId}/players`, label: 'Players', icon: 'P' },
     { to: `/games/${gameId}/spells`, label: 'Spells', icon: 'S' },
+    { to: `/games/${gameId}/initiative-display`, label: 'Initiative display', icon: 'D' },
     { to: `/games/${gameId}/settings`, label: 'Game settings', icon: 'G' }
   ]
 

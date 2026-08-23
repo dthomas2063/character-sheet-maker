@@ -38,6 +38,12 @@ function broadcastPresence(io, gameId, userId, online){
   io.to(roomName(gameId)).emit('playerPresence', { userId, online })
 }
 
+function broadcastPresenceSnapshot(io, gameId){
+  io.to(roomName(gameId)).emit('playerPresenceSnapshot', {
+    players: Array.from(gameSockets.get(String(gameId))?.keys() || [])
+  })
+}
+
 export function setupSocket(io){
   io.use((socket, next)=>{
     try{
@@ -60,7 +66,7 @@ export function setupSocket(io){
         socket.joinedGames.add(String(gameId))
         addSocket(String(gameId), socket.userId, socket)
         socket.to(roomName(gameId)).emit('playerPresence', { userId: socket.userId, online: true })
-        socket.emit('playerPresenceSnapshot', { players: Array.from(gameSockets.get(String(gameId))?.keys() || []) })
+        broadcastPresenceSnapshot(io, gameId)
         acknowledge({ ok: true })
       }catch(err){ acknowledge({ error: err.message }) }
     })

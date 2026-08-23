@@ -17,8 +17,9 @@ const InvitationSchema = new mongoose.Schema({
 const MonsterSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
   initiative: { type: Number, required: true },
-  maxHp: { type: Number, required: true, min: 1, default: 10 },
+  maxHp: { type: Number, required: true, min: 0, default: 10 },
   currentHp: { type: Number, required: true, min: 0, default: 10 },
+  bloodied: { type: Boolean, default: false },
   dead: { type: Boolean, default: false },
   hidden: { type: Boolean, default: false },
   inCombat: { type: Boolean, default: true }
@@ -32,7 +33,8 @@ const GameSchema = new mongoose.Schema({
   joinCode: { type: String, required: true, unique: true, index: true },
   members: { type: [MemberSchema], default: [] },
   invitations: { type: [InvitationSchema], default: [] },
-  monsters: { type: [MonsterSchema], default: [] }
+  monsters: { type: [MonsterSchema], default: [] },
+  currentTurnKey: { type: String, default: null }
 }, { timestamps: true })
 
 export default mongoose.model('Game', GameSchema)
