@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken'
 import Game from './models/Game.js'
 import ChatMessage from './models/ChatMessage.js'
+import User from './models/User.js'
+import { rollDice, formatDiceRoll } from './dice.js'
 
 const gameSockets = new Map()
 
@@ -86,6 +88,31 @@ export function setupSocket(io){
           io.to(roomName(normalizedGameId)).emit('chatMessage', serialized)
         }
         acknowledge({ ok: true })
+      }catch(err){ acknowledge({ error: err.message }) }
+    })
+
+    socket.on('rollDice', async ({ gameId, label = 'Roll', dice, count = 1, sides = 20, bonus = 0 } = {}, acknowledge = ()=>{})=>{
+      try{
+        const normalizedGameId = String(gameId)
+        if(!socket.joinedGames.has(normalizedGameId)) return acknowledge({ error: 'Join the game before rolling' })
+        const game = await Game.findById(normalizedGameId).select('owner members')
+        if(!game || !isGameMember(game, socket.userId)) return acknowledge({ error: 'You are not a member of this game' })
+        const cleanLabel = String(label || 'Roll').trim().slice(0, 80)
+        if(!cleanLabel) return acknowledge({ error: 'Roll type is required' })
+        const roll = rollDice({ dice, count, sides, bonus })
+        const user = await User.findById(socket.userId).select('name email')
+        const roller = user?.name || user?.email || 'A player'
+        const content = formatDiceRoll({ roller, label: cleanLabel, roll })
+        const message = await ChatMessage.create({
+          game: normalizedGameId,
+          sender: socket.userId,
+          type: 'event',
+          content,
+          eventKey: 'dice.roll',
+          eventData: roll
+        })
+        io.to(roomName(normalizedGameId)).emit('chatMessage', message.toObject())
+        acknowledge({ ok: true, roll })
       }catch(err){ acknowledge({ error: err.message }) }
     })
 

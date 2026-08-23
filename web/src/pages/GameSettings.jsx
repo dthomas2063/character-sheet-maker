@@ -52,11 +52,11 @@ export default function GameSettings({ user }){
         </section>
         <form className="game-type-form" onSubmit={saveGameType}>
           <label htmlFor="game-type">Game type</label>
-          <select id="game-type" value={gameType} onChange={e=>setGameType(e.target.value)} disabled={!isDm}>
-            <option value="DND 2024">DND 2024</option>
-            <option value="Starwars FFG">Starwars FFG</option>
-            <option value="The One Ring">The One Ring</option>
-          </select>
+          {isDm ? <select id="game-type" value={gameType} onChange={e=>setGameType(e.target.value)}>
+              <option value="DND 2024">DND 2024</option>
+              <option value="Starwars FFG">Starwars FFG</option>
+              <option value="The One Ring">The One Ring</option>
+            </select> : <strong className="game-type-value">{game.gameType || 'DND 2024'}</strong>}
           {isDm && hasGameTypeChanges && <button type="submit" disabled={saving}>{saving ? 'Saving...' : 'Save game type'}</button>}
           {status && <span className="settings-status" role="status">{status}</span>}
         </form>

@@ -16,6 +16,7 @@ const app = express()
 const server = createServer(app)
 const io = new Server(server, { cors: { origin: true, credentials: true } })
 setupSocket(io)
+app.set('io', io)
 const PORT = process.env.PORT || 4000
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/character-sheet'
 

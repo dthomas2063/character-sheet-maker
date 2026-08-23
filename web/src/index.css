@@ -300,6 +300,10 @@ select {
     min-width: 160px;
 }
 
+.game-type-value {
+    color: var(--fg);
+}
+
 .settings-status {
     color: var(--accent);
     font-size: 0.85rem;
