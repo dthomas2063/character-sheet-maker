@@ -39,7 +39,7 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     })
 
     const token = localStorage.getItem('authToken')
-    const socket = io({
+    const socket = io(import.meta.env.VITE_API_URL || undefined, {
       auth: { token },
       reconnection: true,
       reconnectionAttempts: Infinity,
