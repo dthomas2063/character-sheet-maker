@@ -38,8 +38,7 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/web" # App source code path
-          # api_location is intentionally omitted: the backend is a full Express.js/Socket.IO app
-          # and must be deployed separately (configure VITE_API_URL to point to the API host)
+          api_location: "/api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
