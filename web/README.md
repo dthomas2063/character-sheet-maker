@@ -2,6 +2,8 @@
 
 This folder contains the React web client.
 
+Requires Node.js 24.
+
 Quick start from repository root:
 
 ```bash

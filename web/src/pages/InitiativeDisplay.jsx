@@ -19,7 +19,7 @@ export default function InitiativeDisplay(){
     }).catch(err=>{
       if(active) setStatus(err.response?.data?.error || 'Could not load initiative display.')
     })
-    const socket = io({ auth: { token: localStorage.getItem('authToken') }, reconnection: true })
+    const socket = io(import.meta.env.VITE_API_URL || undefined, { auth: { token: localStorage.getItem('authToken') }, reconnection: true })
     socket.on('connect', ()=>socket.emit('joinGame', { gameId: id }))
     socket.on('monsterUpdated', update=>setGame(current => current ? { ...current, monsters: current.monsters.map(monster => String(monster._id) === String(update.monsterId) ? { ...monster, ...update } : monster) } : current))
     socket.on('monsterAdded', monster=>setGame(current => current && current.monsters.some(item => String(item._id) === String(monster._id)) ? current : current ? { ...current, monsters: [...current.monsters, monster] } : current))
