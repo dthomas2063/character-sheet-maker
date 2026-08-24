@@ -1,0 +1,32 @@
+.offline-status {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: calc(100vw - 32px);
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.85rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.offline-status.is-offline {
+    border-color: var(--danger);
+    color: var(--fg);
+}
+
+.offline-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-strong);
+}
+
+.is-offline .offline-status-dot {
+    background: var(--danger);
+}
