@@ -13,6 +13,7 @@
     "seed": "node scripts/seed.js"
   },
   "dependencies": {
+    "vite": "^5.0.0", 
     "bcryptjs": "^2.4.3",
     "character-sheet-maker": "file:..",
     "cors": "^2.8.5",
