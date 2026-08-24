@@ -14,6 +14,7 @@ import GamePlayers from './pages/GamePlayers'
 import GameSpells from './pages/GameSpells'
 import InitiativeDisplay from './pages/InitiativeDisplay'
 import api, { setAuthToken } from './api/axios'
+import PwaInstallPrompt from './PwaInstallPrompt'
 
 function ProtectedRoute({ token, children }){
   return token ? children : <Navigate to="/login" replace />
@@ -122,6 +123,7 @@ export default function App(){
           <Route path="/games/:id/initiative-display" element={<ProtectedRoute token={token}><InitiativeDisplay/></ProtectedRoute>}/>
         </Routes>
       </main>
+      <PwaInstallPrompt />
     </div>
   )
 }
