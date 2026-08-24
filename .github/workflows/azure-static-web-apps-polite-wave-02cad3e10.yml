@@ -9,13 +9,16 @@ on:
     branches:
       - main
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
+
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
@@ -24,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
-          
+
       - name: Install dependencies
         run: npm ci --prefix web
       
