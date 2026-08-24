@@ -2,7 +2,7 @@
   "name": "character-sheet-maker",
   "private": true,
   "engines": {
-    "node": ">=22 <23"
+    "node": ">=24 <25"
   },
   "scripts": {
     "dev": "npm --prefix web run dev",
