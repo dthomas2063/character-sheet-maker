@@ -15,6 +15,8 @@ import GameSpells from './pages/GameSpells'
 import InitiativeDisplay from './pages/InitiativeDisplay'
 import api, { setAuthToken } from './api/axios'
 import PwaInstallPrompt from './PwaInstallPrompt'
+import OfflineStatus from './OfflineStatus'
+import './offline-status.css'
 
 function ProtectedRoute({ token, children }){
   return token ? children : <Navigate to="/login" replace />
@@ -124,6 +126,7 @@ export default function App(){
         </Routes>
       </main>
       <PwaInstallPrompt />
+      <OfflineStatus />
     </div>
   )
 }
