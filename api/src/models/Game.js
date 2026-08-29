@@ -25,6 +25,19 @@ const MonsterSchema = new mongoose.Schema({
   inCombat: { type: Boolean, default: true }
 })
 
+const InventoryItemSchema = new mongoose.Schema({
+  name: { type: String, required: true, trim: true },
+  quantity: { type: Number, default: 1, min: 0 },
+  notes: { type: String, default: '' },
+  addedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+  isContainer: { type: Boolean, default: false },
+  parentItem: { type: mongoose.Schema.Types.ObjectId, default: null },
+  value: {
+    amount: { type: Number, default: null, min: 0 },
+    denomination: { type: String, enum: ['CP', 'SP', 'GP', 'PP'], default: 'GP' }
+  }
+}, { timestamps: true })
+
 const GameSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
   gameType: { type: String, enum: ['DND 2024', 'Starwars FFG', 'The One Ring'], default: 'DND 2024' },
@@ -34,6 +47,13 @@ const GameSchema = new mongoose.Schema({
   members: { type: [MemberSchema], default: [] },
   invitations: { type: [InvitationSchema], default: [] },
   monsters: { type: [MonsterSchema], default: [] },
+  partyInventory: { type: [InventoryItemSchema], default: [] },
+  partyCurrency: {
+    pp: { type: Number, default: 0, min: 0 },
+    gp: { type: Number, default: 0, min: 0 },
+    sp: { type: Number, default: 0, min: 0 },
+    cp: { type: Number, default: 0, min: 0 }
+  },
   currentTurnKey: { type: String, default: null }
 }, { timestamps: true })
 

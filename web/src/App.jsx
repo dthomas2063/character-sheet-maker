@@ -12,6 +12,7 @@ import GameTableView from './pages/GameTableView'
 import GameSettings from './pages/GameSettings'
 import GamePlayers from './pages/GamePlayers'
 import GameSpells from './pages/GameSpells'
+import GameInventory from './pages/GameInventory'
 import InitiativeDisplay from './pages/InitiativeDisplay'
 import api, { setAuthToken } from './api/axios'
 import PwaInstallPrompt from './PwaInstallPrompt'
@@ -121,6 +122,7 @@ export default function App(){
           <Route path="/games/:id" element={<ProtectedRoute token={token}><GameTableView user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/settings" element={<ProtectedRoute token={token}><GameSettings user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/players" element={<ProtectedRoute token={token}><GamePlayers user={user}/></ProtectedRoute>}/>
+          <Route path="/games/:id/inventory" element={<ProtectedRoute token={token}><GameInventory user={user}/></ProtectedRoute>}/>
           <Route path="/games/:id/spells" element={<ProtectedRoute token={token}><GameSpells/></ProtectedRoute>}/>
           <Route path="/games/:id/initiative-display" element={<ProtectedRoute token={token}><InitiativeDisplay/></ProtectedRoute>}/>
         </Routes>
