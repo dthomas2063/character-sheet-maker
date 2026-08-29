@@ -1,0 +1,45 @@
+.game-inventory-page{max-width:1000px;margin:0 auto}
+.inventory-add-form{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;padding:14px;border:1px solid var(--border);background:var(--surface)}
+.inventory-add-form input{min-width:0}
+.inventory-add-form input:first-child{flex:2 1 200px}
+.inventory-add-form input:nth-child(2){flex:0 0 80px}
+.inventory-add-form input:nth-child(3){flex:2 1 200px}
+.inventory-add-form input:nth-child(4){flex:0 0 100px}
+.inventory-value-input{width:80px}
+.inventory-value-denomination{flex:0 0 auto}
+.inventory-item-value{color:var(--accent);font-weight:600;white-space:nowrap}
+.inventory-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.inventory-item{padding:6px 10px;border:1px solid var(--border);background:var(--surface)}
+.inventory-item-row{display:flex;align-items:center;gap:10px}
+.inventory-item-main{display:flex;align-items:baseline;gap:8px;flex:1 1 auto;min-width:0}
+.inventory-item-name{font-weight:700;color:var(--fg);white-space:nowrap}
+.inventory-item-qty{color:var(--accent);font-weight:600;white-space:nowrap}
+.inventory-qty-input{width:60px}
+.inventory-item-notes{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.inventory-notes-input{flex:1 1 160px;min-width:0}
+.inventory-item-actions{display:flex;gap:2px;flex:0 0 auto}
+.inventory-icon-button{background:none;border:none;padding:4px 6px;font-size:.95rem;line-height:1;cursor:pointer;border-radius:4px}
+.inventory-icon-button:hover{background:var(--surface-raised)}
+.inventory-empty{color:var(--muted)}
+.inventory-item-edit-options{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.inventory-container-toggle{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.85rem;white-space:nowrap}
+.inventory-parent-select{min-width:0}
+.inventory-container-badge{font-size:.9rem}
+.inventory-nested-list{margin:6px 0 0;padding-left:16px;border-left:2px solid var(--border)}
+.inventory-nested-list .inventory-item{background:var(--surface-raised)}
+.inventory-empty-nested{padding:4px 8px;font-size:.8rem}
+.inventory-drag-handle{cursor:grab;color:var(--muted);letter-spacing:-2px}
+.inventory-item-dragging{opacity:.4}
+.inventory-item-container.inventory-item-drop-target{outline:2px dashed var(--accent);outline-offset:2px;background:var(--surface-raised)}
+.inventory-list-wrapper{padding:4px;border-radius:4px}
+.inventory-root-dropzone{margin-top:12px;padding:16px;border:2px dashed var(--border);border-radius:6px;color:var(--muted);font-size:.85rem;text-align:center}
+.inventory-root-dropzone.inventory-list-drop-target{border-color:var(--accent);color:var(--accent);background:rgba(125,211,167,.08)}
+.party-funds{margin:16px 0;padding:14px;border:1px solid var(--border);background:var(--surface)}
+.party-funds-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.party-funds-header h3{margin:0;font-size:1rem}
+.party-funds-display,.party-funds-edit{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:10px}
+.party-funds-field{display:flex;align-items:center;gap:6px}
+.party-funds-label{color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.03em}
+.party-funds-value{color:var(--accent);font-weight:700;font-size:1.05rem}
+.party-funds-input{width:70px;box-sizing:border-box}
+.party-funds-actions{display:flex;gap:2px;margin-left:auto}

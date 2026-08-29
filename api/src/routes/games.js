@@ -1,6 +1,6 @@
 import express from 'express'
 import auth from '../middleware/auth.js'
-import { listGames, createGame, updateGame, invitePlayer, acceptInvitation, joinWithCode, getGame, listGameMessages, addMonster, adjustMonsterHp, removeMonster, setMonsterInitiative, toggleMonsterDead, toggleMonsterHidden, toggleMonsterBloodied, clearCombatTracker, advanceTurn, rollPlayerInitiative, setPlayerInitiative } from '../controllers/gameController.js'
+import { listGames, createGame, updateGame, invitePlayer, acceptInvitation, joinWithCode, getGame, listGameMessages, addMonster, adjustMonsterHp, removeMonster, setMonsterInitiative, toggleMonsterDead, toggleMonsterHidden, toggleMonsterBloodied, clearCombatTracker, advanceTurn, rollPlayerInitiative, setPlayerInitiative, addInventoryItem, updateInventoryItem, removeInventoryItem, updatePartyCurrency } from '../controllers/gameController.js'
 
 const router = express.Router()
 router.use(auth)
@@ -24,5 +24,9 @@ router.post('/:id/initiative/roll', rollPlayerInitiative)
 router.patch('/:id/initiative/players/:userId', setPlayerInitiative)
 router.post('/:id/invitations', invitePlayer)
 router.post('/:id/accept', acceptInvitation)
+router.post('/:id/inventory', addInventoryItem)
+router.patch('/:id/inventory/:itemId', updateInventoryItem)
+router.delete('/:id/inventory/:itemId', removeInventoryItem)
+router.patch('/:id/currency', updatePartyCurrency)
 
 export default router

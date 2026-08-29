@@ -6,11 +6,22 @@ import ChatMessage from '../models/ChatMessage.js'
 import { rollDice, formatDiceRoll } from '../dice.js'
 
 const GAME_TYPES = ['DND 2024', 'Starwars FFG', 'The One Ring']
+const CURRENCY_DENOMINATIONS = ['CP', 'SP', 'GP', 'PP']
+const INVALID_VALUE = Symbol('invalid-value')
 
 function forbidden(res){ return res.status(403).json({ error: 'Forbidden' }) }
 function notFound(res){ return res.status(404).json({ error: 'Not found' }) }
 function makeJoinCode(){ return crypto.randomBytes(4).toString('hex').toUpperCase() }
 function refId(value){ return value?._id || value }
+
+function parseInventoryValue(rawValue){
+  if(rawValue === undefined) return undefined
+  if(rawValue === null || rawValue === '' || rawValue.amount === undefined || rawValue.amount === '' || rawValue.amount === null) return null
+  const amount = Number(rawValue.amount)
+  if(!Number.isFinite(amount) || amount < 0) return INVALID_VALUE
+  const denomination = CURRENCY_DENOMINATIONS.includes(rawValue.denomination) ? rawValue.denomination : 'GP'
+  return { amount, denomination }
+}
 
 function canView(game, userId){
   return String(refId(game.owner)) === String(userId) || game.members.some(member => String(refId(member.user)) === String(userId))
@@ -139,6 +150,7 @@ export async function getGame(req, res){
       .populate('owner', 'name email')
       .populate('members.user', 'name email')
       .populate('members.character', 'name level classes initiative hitPoints')
+      .populate('partyInventory.addedBy', 'name email')
     if(!game) return notFound(res)
     if(!canView(game, req.userId)) return forbidden(res)
     res.json(game)
@@ -411,6 +423,131 @@ export async function setPlayerInitiative(req, res){
       inCombat: true
     })
     res.json({ initiative })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export async function addInventoryItem(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(!canView(game, req.userId)) return forbidden(res)
+    const name = String(req.body.name || '').trim()
+    if(!name) return res.status(400).json({ error: 'Item name is required' })
+    const quantity = req.body.quantity === undefined ? 1 : Number(req.body.quantity)
+    if(!Number.isFinite(quantity) || quantity < 0) return res.status(400).json({ error: 'Quantity must be a non-negative number' })
+    const isContainer = req.body.isContainer === true
+    let parentItem = null
+    if(req.body.parentItem){
+      const parent = game.partyInventory.id(req.body.parentItem)
+      if(!parent) return res.status(400).json({ error: 'Container not found' })
+      if(!parent.isContainer) return res.status(400).json({ error: 'That item is not a container' })
+      if(isContainer) return res.status(400).json({ error: 'A container cannot be placed inside another container' })
+      parentItem = parent._id
+    }
+    const value = parseInventoryValue(req.body.value)
+    if(value === INVALID_VALUE) return res.status(400).json({ error: 'Value amount must be a non-negative number' })
+    game.partyInventory.push({ name, quantity, notes: String(req.body.notes || ''), addedBy: req.userId, isContainer, parentItem, value: value || undefined })
+    await game.save()
+    await game.populate('partyInventory.addedBy', 'name email')
+    const item = game.partyInventory[game.partyInventory.length - 1]
+    req.app.get('io')?.to(`game:${game._id}`).emit('inventoryUpdated', { partyInventory: game.partyInventory })
+    res.status(201).json(item)
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export async function updateInventoryItem(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(!canView(game, req.userId)) return forbidden(res)
+    const item = game.partyInventory.id(req.params.itemId)
+    if(!item) return notFound(res)
+    const setFields = {}
+    if(req.body.name !== undefined) setFields['partyInventory.$[elem].name'] = String(req.body.name).trim()
+    if(req.body.quantity !== undefined){
+      const quantity = Number(req.body.quantity)
+      if(!Number.isFinite(quantity) || quantity < 0) return res.status(400).json({ error: 'Quantity must be a non-negative number' })
+      setFields['partyInventory.$[elem].quantity'] = quantity
+    }
+    if(req.body.notes !== undefined) setFields['partyInventory.$[elem].notes'] = String(req.body.notes)
+    if(req.body.isContainer !== undefined){
+      const isContainer = req.body.isContainer === true
+      if(isContainer && item.parentItem) return res.status(400).json({ error: 'A container cannot be placed inside another container' })
+      if(!isContainer && game.partyInventory.some(other => String(other.parentItem) === String(item._id))) return res.status(400).json({ error: 'Move or remove the items inside this container first' })
+      setFields['partyInventory.$[elem].isContainer'] = isContainer
+    }
+    if(req.body.parentItem !== undefined){
+      if(!req.body.parentItem){
+        setFields['partyInventory.$[elem].parentItem'] = null
+      } else {
+        if(String(req.body.parentItem) === String(item._id)) return res.status(400).json({ error: 'An item cannot contain itself' })
+        const parent = game.partyInventory.id(req.body.parentItem)
+        if(!parent) return res.status(400).json({ error: 'Container not found' })
+        if(!parent.isContainer) return res.status(400).json({ error: 'That item is not a container' })
+        if(item.isContainer) return res.status(400).json({ error: 'A container cannot be placed inside another container' })
+        setFields['partyInventory.$[elem].parentItem'] = parent._id
+      }
+    }
+    if(req.body.value !== undefined){
+      const value = parseInventoryValue(req.body.value)
+      if(value === INVALID_VALUE) return res.status(400).json({ error: 'Value amount must be a non-negative number' })
+      setFields['partyInventory.$[elem].value'] = value || { amount: null, denomination: 'GP' }
+    }
+    if(Object.keys(setFields).length){
+      // Direct positional update bypasses subdocument dirty-tracking pitfalls, so clearing fields to null always persists.
+      await Game.updateOne(
+        { _id: game._id },
+        { $set: setFields },
+        { arrayFilters: [{ 'elem._id': item._id }] }
+      )
+    }
+    const updatedGame = await Game.findById(game._id).populate('partyInventory.addedBy', 'name email')
+    const updatedItem = updatedGame.partyInventory.id(item._id)
+    req.app.get('io')?.to(`game:${game._id}`).emit('inventoryUpdated', { partyInventory: updatedGame.partyInventory })
+    res.json(updatedItem)
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export async function removeInventoryItem(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(!canView(game, req.userId)) return forbidden(res)
+    const item = game.partyInventory.id(req.params.itemId)
+    if(!item) return notFound(res)
+    game.partyInventory.forEach(other => { if(String(other.parentItem) === String(item._id)) other.parentItem = null })
+    game.markModified('partyInventory')
+    item.deleteOne()
+    await game.save()
+    req.app.get('io')?.to(`game:${game._id}`).emit('inventoryUpdated', { partyInventory: game.partyInventory })
+    res.json({ ok: true })
+  }catch(err){
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export async function updatePartyCurrency(req, res){
+  try{
+    const game = await Game.findById(req.params.id)
+    if(!game) return notFound(res)
+    if(!canView(game, req.userId)) return forbidden(res)
+    const setFields = {}
+    for(const denomination of ['pp', 'gp', 'sp', 'cp']){
+      if(req.body[denomination] === undefined) continue
+      const value = Number(req.body[denomination])
+      if(!Number.isFinite(value) || value < 0) return res.status(400).json({ error: `${denomination.toUpperCase()} must be a non-negative number` })
+      setFields[`partyCurrency.${denomination}`] = value
+    }
+    if(Object.keys(setFields).length) await Game.updateOne({ _id: game._id }, { $set: setFields })
+    const updatedGame = await Game.findById(game._id).select('partyCurrency')
+    req.app.get('io')?.to(`game:${game._id}`).emit('currencyUpdated', { partyCurrency: updatedGame.partyCurrency })
+    res.json(updatedGame.partyCurrency)
   }catch(err){
     res.status(400).json({ error: err.message })
   }
