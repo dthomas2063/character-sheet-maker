@@ -4,6 +4,7 @@ import api from '../api/axios'
 import GameSidebar from './GameSidebar'
 import GameNavBar from './GameNavBar'
 import GameChat from './GameChat'
+import CharacterSheet from './CharacterSheet'
 import './game-table.css'
 import './initiative.css'
 import './game-table-workspace.css'
@@ -27,6 +28,8 @@ export default function GameTableView({ user }){
   const [currentTurnKey, setCurrentTurnKey] = useState(null)
   const [onlinePlayers, setOnlinePlayers] = useState({})
   const [showClearConfirm, setShowClearConfirm] = useState(false)
+  const [chatCollapsed, setChatCollapsed] = useState(false)
+  const [selectedCharacter, setSelectedCharacter] = useState(null)
 
   async function loadGame(){
     try{ const nextGame = (await api.get(`/games/${id}`)).data; setGame(nextGame); setCurrentTurnKey(nextGame.currentTurnKey) }
@@ -138,9 +141,9 @@ export default function GameTableView({ user }){
     <div className="game-layout-content game-table-page">
       <GameNavBar gameName={game.name} dmName={game.owner?.name || game.owner?.email} />
       <div className="character-orb-strip" aria-label="Characters in this game">
-        {game.members.map((member, index) => { const name = member.character?.name || member.user?.name || member.user?.email || 'Character'; const memberId = String(member.user?._id || member.user); const mine = memberId === String(user?._id); const online = onlinePlayers[memberId]; return <span className={`character-orb${mine ? ' own-character' : ''}`} key={`character-${memberId}-${index}`} title={`${name}${online ? ' (online)' : ''}`} aria-label={`${name}${online ? ', online' : ''}`}>{name.charAt(0).toUpperCase()}{online && <span className="online-indicator" aria-hidden="true" />}</span> })}
+        {game.members.map((member, index) => { const name = member.character?.name || member.user?.name || member.user?.email || 'Character'; const memberId = String(member.user?._id || member.user); const mine = memberId === String(user?._id); const online = onlinePlayers[memberId]; const characterId = member.character?._id; const selected = selectedCharacter?.characterId === characterId; return <button type="button" className={`character-orb${mine ? ' own-character' : ''}${selected ? ' selected-character' : ''}`} key={`character-${memberId}-${index}`} title={`${name}${online ? ' (online)' : ''}`} aria-label={`View ${name}'s character sheet`} disabled={!characterId} onClick={()=>setSelectedCharacter(current => (current?.characterId === characterId ? null : { characterId, name, mine }))}>{name.charAt(0).toUpperCase()}{online && <span className="online-indicator" aria-hidden="true" />}</button> })}
       </div>
-      <div className="tabletop-main">
+      <div className={`tabletop-main${chatCollapsed ? ' chat-collapsed' : ''}`}>
         <div className="tabletop-stage" aria-label="Virtual tabletop area">
           <section className="initiative-panel">
             {isDm && <div className="manual-bloodied-controls"><p className="eyebrow">Damage-only monsters</p>{game.monsters.filter(monster => monster.maxHp === 0).map(monster => <div className="manual-bloodied-row" key={monster._id}><span>{monster.name}</span><button type="button" className="initiative-dead-button" onClick={()=>monsterAction(`/initiative/monsters/${monster._id}/bloodied`)}>{monster.bloodied ? 'Clear Bloodied' : 'Mark Bloodied'}</button></div>)}</div>}
@@ -148,8 +151,16 @@ export default function GameTableView({ user }){
             {initiativeEntries.length === 0 ? <p className="initiative-empty">No players or monsters yet.</p> : <ol className="initiative-list">{initiativeEntries.map((entry, index) => { const editKey = `${entry.type}-${entry.id}`; const editing = editingInitiative === editKey; return <li className={`${entry.isMine ? 'initiative-own ' : ''}${entry.id === currentTurnId ? 'initiative-current ' : ''}${entry.dead ? 'initiative-dead ' : ''}${entry.hidden ? 'initiative-hidden ' : ''}`} key={`${editKey}-${index}`}><button type="button" className="initiative-score" onClick={()=>isDm && editInitiative(entry)}>{editing ? <input autoFocus type="text" inputMode="numeric" pattern="-?[0-9]*" value={initiativeValue} onChange={event=>setInitiativeValue(event.target.value.replace(/[^0-9-]/g, '').replace(/(?!^)-/g, ''))} onKeyDown={event=>{ if(event.key === 'Enter'){ event.preventDefault(); saveInitiative(entry) } if(event.key === 'Escape') setEditingInitiative(null) }} onBlur={()=>setEditingInitiative(null)} aria-label={`Initiative for ${entry.name}`} /> : entry.initiative}</button><span className="initiative-name">{entry.name}</span>{entry.type === 'Monster' && entry.bloodied && <span className="bloodied-tag">Bloodied</span>}{isDm && entry.type === 'Monster' && <span className="monster-health-controls"><span className="combatant-hp">{entry.currentHp}/{entry.maxHp} HP</span><button type="button" className="health-adjust-button" onClick={()=>adjustMonsterHp(entry.id, -1)} disabled={!hpForms[entry.id]}>-</button><input className="damage-input" type="text" inputMode="numeric" placeholder="HP" value={hpForms[entry.id] || ''} onChange={event=>setHpForms({...hpForms, [entry.id]:event.target.value.replace(/\D/g, '')})} /><button type="button" className="health-adjust-button" onClick={()=>adjustMonsterHp(entry.id, 1)} disabled={!hpForms[entry.id]}>+</button></span>}{isDm && entry.type !== 'Monster' && <span className="combatant-hp">{entry.currentHp}/{entry.maxHp} HP</span>}{entry.type !== 'Monster' && <span className="initiative-type">{entry.type}</span>}{isDm && entry.type === 'Monster' && <span className="monster-actions"><button type="button" className="initiative-dead-button" onClick={()=>monsterAction(`/initiative/monsters/${entry.id}`)}>{entry.dead ? 'Revive' : 'Mark dead'}</button>{entry.maxHp === 0 && <button type="button" className="initiative-dead-button" onClick={()=>monsterAction(`/initiative/monsters/${entry.id}/bloodied`)}>{entry.bloodied ? 'Clear Bloodied' : 'Mark Bloodied'}</button>}<button type="button" className="initiative-dead-button" onClick={()=>monsterAction(`/initiative/monsters/${entry.id}/visibility`)}>{entry.hidden ? 'Reveal' : 'Hide'}</button><button type="button" className="initiative-remove" onClick={()=>removeMonster(entry.id)} aria-label={`Remove ${entry.name}`}>x</button></span>}</li> })}</ol>}
             {isDm && <form className="monster-form" onSubmit={addMonster}><input placeholder="Monster name" value={monsterForm.name} onChange={event=>setMonsterForm({...monsterForm, name:event.target.value})} required /><input type="number" placeholder="Init." value={monsterForm.initiative} onChange={event=>setMonsterForm({...monsterForm, initiative:event.target.value})} required /><input type="number" min="0" placeholder="Max HP (0 = damage)" value={monsterForm.maxHp} onChange={event=>setMonsterForm({...monsterForm, maxHp:event.target.value})} required /><label className="monster-hidden-option"><input type="checkbox" checked={monsterForm.hidden} onChange={event=>setMonsterForm({...monsterForm, hidden:event.target.checked})} /> Hidden</label><button type="submit">Add monster</button></form>}
           </section>
+          {selectedCharacter && (
+            <div className="character-sheet-panel" aria-label={`${selectedCharacter.name}'s character sheet`}>
+              <button type="button" className="character-sheet-panel-close" onClick={()=>setSelectedCharacter(null)} aria-label="Close character sheet">✕</button>
+              <div className="character-sheet-panel-body">
+                <CharacterSheet characterId={selectedCharacter.characterId} allowEdit={selectedCharacter.mine} />
+              </div>
+            </div>
+          )}
         </div>
-        <GameChat game={game} user={user} onMonsterUpdated={handleMonsterUpdated} onInitiativeUpdated={handleInitiativeUpdated} onCombatCleared={handleCombatCleared} onPresenceUpdated={handlePresenceUpdated} onTurnUpdated={handleTurnUpdated} />
+        <GameChat game={game} user={user} onMonsterUpdated={handleMonsterUpdated} onInitiativeUpdated={handleInitiativeUpdated} onCombatCleared={handleCombatCleared} onPresenceUpdated={handlePresenceUpdated} onTurnUpdated={handleTurnUpdated} onCollapsedChange={setChatCollapsed} />
       </div>
     </div>
     {showClearConfirm && <div className="combat-modal-backdrop" role="presentation"><div className="combat-modal" role="dialog" aria-modal="true" aria-labelledby="clear-combat-title"><h2 id="clear-combat-title">Clear combat tracker?</h2><p>This removes all players and monsters from the current tracker. Game membership and characters will be preserved.</p><div className="combat-modal-actions"><button type="button" className="modal-cancel" onClick={()=>setShowClearConfirm(false)}>Cancel</button><button type="button" onClick={async()=>{ await api.post(`/games/${id}/initiative/clear`); setShowClearConfirm(false); handleCombatCleared() }}>Clear tracker</button></div></div></div>}

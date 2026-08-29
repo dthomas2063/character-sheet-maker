@@ -9,13 +9,14 @@ import './dice-popup.css'
 function nameFor(person){ return person?.name || person?.email || 'Unknown player' }
 function idFor(person){ return String(person?._id || person) }
 
-export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared, onPresenceUpdated, onTurnUpdated }){
+export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpdated, onCombatCleared, onPresenceUpdated, onTurnUpdated, onCollapsedChange }){
   const [messages, setMessages] = useState([])
   const [recipientId, setRecipientId] = useState('')
   const [draft, setDraft] = useState('')
   const [roll, setRoll] = useState({ label: 'Ability check', dice: [{ count: 1, sides: 20 }], bonus: 0 })
   const [rollOpen, setRollOpen] = useState(false)
   const [status, setStatus] = useState(null)
+  const [collapsed, setCollapsed] = useState(false)
   const socketRef = useRef(null)
   const endRef = useRef(null)
   const rollComposerRef = useRef(null)
@@ -74,7 +75,9 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     }
   }, [game._id])
 
-  useEffect(()=>{ endRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
+  useEffect(()=>{ if(!collapsed) endRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages, collapsed])
+
+  useEffect(()=>{ onCollapsedChange?.(collapsed) }, [collapsed])
 
   useEffect(()=>{
     function closeRollComposer(event){
@@ -122,8 +125,30 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
     setRoll(current => ({ ...current, dice: current.dice.filter((_, dieIndex) => dieIndex !== index) }))
   }
 
-  return <section className="game-chat" aria-label="Game chat">
-    <div className="game-chat-header"><div><p className="eyebrow">Game Chat</p></div><span>{messages.length} messages</span></div>
+  function renderDiceForm(){
+    return <form className="dice-roll-form" onSubmit={rollDice}>
+      <input value={roll.label} onChange={e=>setRoll({...roll, label:e.target.value})} placeholder="Roll type" aria-label="Roll type" maxLength="80" />
+      <div className="dice-groups">
+        {roll.dice.map((die, index) => <div className="dice-group" key={index}>
+          <input type="number" min="1" max="20" value={die.count} onChange={e=>updateDie(index, 'count', e.target.value)} aria-label={`Dice count ${index + 1}`} />
+          <span>d</span>
+          <select value={die.sides} onChange={e=>updateDie(index, 'sides', e.target.value)} aria-label={`Dice sides ${index + 1}`}><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="10">10</option><option value="12">12</option><option value="20">20</option><option value="100">100</option></select>
+          {roll.dice.length > 1 && <button type="button" className="remove-dice-button" onClick={()=>removeDie(index)} aria-label="Remove dice type">x</button>}
+        </div>)}
+      </div>
+      <button type="button" className="add-dice-button" onClick={addDie} aria-label="Add another dice type">+</button>
+      <span>+</span>
+      <input type="number" min="-1000" max="1000" value={roll.bonus} onChange={e=>setRoll({...roll, bonus:e.target.value})} aria-label="Roll bonus" />
+      <button type="submit">Roll</button>
+    </form>
+  }
+
+  return <>
+    <button type="button" className={`game-chat-tab${collapsed ? ' visible' : ''}`} onClick={()=>setCollapsed(false)} aria-label="Open chat">Chat</button>
+    {collapsed && <button type="button" className="game-dice-tab" onClick={()=>setRollOpen(current => !current)} aria-expanded={rollOpen} aria-label="Roll dice">Dice</button>}
+    {collapsed && rollOpen && <div className="floating-dice-overlay" ref={rollComposerRef}>{renderDiceForm()}</div>}
+    <section className={`game-chat${collapsed ? ' collapsed' : ''}`} aria-label="Game chat">
+    <div className="game-chat-header"><div><p className="eyebrow">Game Chat</p></div><span>{messages.length} messages</span><button type="button" className="game-chat-collapse" onClick={()=>setCollapsed(true)} aria-label="Minimize chat">»</button></div>
     <div className="chat-messages" aria-live="polite">
       {messages.length === 0 && <p className="chat-empty">No messages yet. Start the conversation.</p>}
       {messages.map((message, messageIndex) => message.type === 'event' ? <p className="chat-event" key={`event-${message._id || messageIndex}`}>{message.content}</p> : <article className={`chat-message ${idFor(message.sender) === idFor(user) ? 'own-message' : ''}`} key={`message-${message._id || messageIndex}`}>
@@ -139,24 +164,11 @@ export default function GameChat({ game, user, onMonsterUpdated, onInitiativeUpd
         {recipients.map((person, index) => <option key={`recipient-${idFor(person)}-${index}`} value={idFor(person)}>Whisper to {nameFor(person)}</option>)}
       </select>
       <form className="chat-input-row" onSubmit={sendMessage}><input value={draft} onChange={e=>setDraft(e.target.value)} placeholder="Write a message..." maxLength="2000" /><button type="submit">Send</button></form>
-      <div className="dice-composer" ref={rollComposerRef}>
+      {!collapsed && <div className="dice-composer" ref={rollComposerRef}>
         <button type="button" className="dice-composer-toggle" onClick={()=>setRollOpen(current => !current)} aria-expanded={rollOpen}>Roll dice</button>
-        {rollOpen && <form className="dice-roll-form" onSubmit={rollDice}>
-        <input value={roll.label} onChange={e=>setRoll({...roll, label:e.target.value})} placeholder="Roll type" aria-label="Roll type" maxLength="80" />
-        <div className="dice-groups">
-          {roll.dice.map((die, index) => <div className="dice-group" key={index}>
-            <input type="number" min="1" max="20" value={die.count} onChange={e=>updateDie(index, 'count', e.target.value)} aria-label={`Dice count ${index + 1}`} />
-            <span>d</span>
-            <select value={die.sides} onChange={e=>updateDie(index, 'sides', e.target.value)} aria-label={`Dice sides ${index + 1}`}><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="10">10</option><option value="12">12</option><option value="20">20</option><option value="100">100</option></select>
-            {roll.dice.length > 1 && <button type="button" className="remove-dice-button" onClick={()=>removeDie(index)} aria-label="Remove dice type">x</button>}
-          </div>)}
-        </div>
-        <button type="button" className="add-dice-button" onClick={addDie} aria-label="Add another dice type">+</button>
-        <span>+</span>
-        <input type="number" min="-1000" max="1000" value={roll.bonus} onChange={e=>setRoll({...roll, bonus:e.target.value})} aria-label="Roll bonus" />
-        <button type="submit">Roll</button>
-        </form>}
-      </div>
+        {rollOpen && renderDiceForm()}
+      </div>}
     </div>
-  </section>
+    </section>
+  </>
 }
